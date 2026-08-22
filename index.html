@@ -5,27 +5,83 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Dmitry — Data Scientist</title>
+	<title>Dmitry — Data Scientist / ML Engineer</title>
 
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-	<header>
-		<h1>Dmitry</h1>
-		<p>Data Scientist</p>
+	<header class="hero">
 
-		<p>
-			Python · SQL · Machine Learning · MLOps
-		</p>
+		<div class="hero-content">
+
+			<div>
+				<p class="eyebrow">DATA SCIENTIST · ML ENGINEER</p>
+
+				<h1>Dmitry</h1>
+
+				<p class="hero-title">
+					Machine Learning · Data Science · MLOps
+				</p>
+
+				<p class="hero-description">
+					Разрабатываю ML-модели для задач классификации,
+					прогнозирования и оптимизации бизнес-метрик.
+					Работаю с данными от подготовки и feature engineering
+					до batch-инференса и production-пайплайнов.
+				</p>
+
+				<div class="hero-links">
+					<a class="button button-primary" href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
+						GitHub →
+					</a>
+
+					<a class="button button-secondary" href="#projects">
+						Проекты ↓
+					</a>
+				</div>
+			</div>
+
+		</div>
+
 	</header>
 
 
 	<main>
 
-		<section>
-			<h2>Selected Projects</h2>
+		<section class="stack-section">
+
+			<p class="eyebrow">TECH STACK</p>
+
+			<h2>Инструменты</h2>
+
+			<div class="tech-stack">
+
+				<span>Python</span>
+				<span>SQL</span>
+				<span>Pandas</span>
+				<span>NumPy</span>
+				<span>Scikit-learn</span>
+				<span>CatBoost</span>
+				<span>LightGBM</span>
+				<span>XGBoost</span>
+				<span>Optuna</span>
+				<span>SHAP</span>
+				<span>Airflow</span>
+				<span>PostgreSQL</span>
+				<span>S3</span>
+
+			</div>
+
+		</section>
+
+
+		<section id="projects">
+
+			<p class="eyebrow">SELECTED WORK</p>
+
+			<h2>Основные проекты</h2>
 
 			<div class="projects">
 
@@ -34,23 +90,29 @@
 
 				<article class="project-card">
 
+					<div class="project-number">01</div>
+
 					<h3>SmartScore</h3>
 
-					<p>
-						Прогнозирование высокого спроса
-						на объявления.
+					<p class="project-description">
+						Модель прогнозирования высокого спроса
+						на объявления недвижимости.
 					</p>
 
-					<p>
-						<strong>ROC-AUC:</strong> 0.992
-					</p>
+					<div class="metric">
+						<span>ROC-AUC</span>
+						<strong>0.992</strong>
+					</div>
 
-					<p>
-						Python · LightGBM · CatBoost ·
-						PostgreSQL · Airflow · S3
-					</p>
+					<div class="project-tags">
+						<span>LightGBM</span>
+						<span>CatBoost</span>
+						<span>PostgreSQL</span>
+						<span>Airflow</span>
+						<span>S3</span>
+					</div>
 
-					<a href="projects/smartscore/">
+					<a class="case-link" href="projects/smartscore/">
 						Case Study →
 					</a>
 
@@ -61,23 +123,29 @@
 
 				<article class="project-card">
 
+					<div class="project-number">02</div>
+
 					<h3>Darkstore</h3>
 
-					<p>
+					<p class="project-description">
 						Прогнозирование недельных продаж
 						сети из 45 дарксторов.
 					</p>
 
-					<p>
-						<strong>R²:</strong> 0.984
-					</p>
+					<div class="metric">
+						<span>R²</span>
+						<strong>0.984</strong>
+					</div>
 
-					<p>
-						Python · CatBoost · Time Series ·
-						Airflow · S3
-					</p>
+					<div class="project-tags">
+						<span>CatBoost</span>
+						<span>Time Series</span>
+						<span>PostgreSQL</span>
+						<span>Airflow</span>
+						<span>S3</span>
+					</div>
 
-					<a href="projects/darkstore/">
+					<a class="case-link" href="projects/darkstore/">
 						Case Study →
 					</a>
 
@@ -88,23 +156,29 @@
 
 				<article class="project-card">
 
+					<div class="project-number">03</div>
+
 					<h3>Hotel Bookings</h3>
 
-					<p>
+					<p class="project-description">
 						Прогнозирование отмен бронирований
 						с использованием ML и NLP.
 					</p>
 
-					<p>
-						Classification · NLP · SHAP
-					</p>
+					<div class="metric">
+						<span>IR · TEST</span>
+						<strong>214.5M ₽</strong>
+					</div>
 
-					<p>
-						CatBoost · LightGBM · XGBoost ·
-						Optuna
-					</p>
+					<div class="project-tags">
+						<span>CatBoost</span>
+						<span>XGBoost</span>
+						<span>TF-IDF</span>
+						<span>SHAP</span>
+						<span>Optuna</span>
+					</div>
 
-					<a href="projects/hotel-bookings/">
+					<a class="case-link" href="projects/hotel-bookings/">
 						Case Study →
 					</a>
 
@@ -116,22 +190,98 @@
 		</section>
 
 
+		<section class="numbers-section">
+
+			<p class="eyebrow">AT A GLANCE</p>
+
+			<h2>В цифрах</h2>
+
+			<div class="numbers">
+
+				<div class="number-card">
+					<strong>3</strong>
+					<span>основных ML-проекта</span>
+				</div>
+
+				<div class="number-card">
+					<strong>45</strong>
+					<span>дарксторов в проекте Darkstore</span>
+				</div>
+
+				<div class="number-card">
+					<strong>30K+</strong>
+					<span>бронирований в Hotel Bookings</span>
+				</div>
+
+				<div class="number-card">
+					<strong>526</strong>
+					<span>признаков в Hotel Bookings</span>
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<section class="workflow-section">
+
+			<p class="eyebrow">APPROACH</p>
+
+			<h2>Как работаю с ML-задачами</h2>
+
+			<div class="workflow">
+
+				<div>
+					<span>01</span>
+					<strong>Data</strong>
+					<p>EDA, очистка и подготовка данных</p>
+				</div>
+
+				<div>
+					<span>02</span>
+					<strong>Features</strong>
+					<p>Feature engineering и работа с текстом</p>
+				</div>
+
+				<div>
+					<span>03</span>
+					<strong>Model</strong>
+					<p>Обучение, CV и оптимизация</p>
+				</div>
+
+				<div>
+					<span>04</span>
+					<strong>Evaluate</strong>
+					<p>Метрики и бизнес-эффект</p>
+				</div>
+
+				<div>
+					<span>05</span>
+					<strong>Deploy</strong>
+					<p>Airflow, S3 и batch inference</p>
+				</div>
+
+			</div>
+
+		</section>
+
+
 		<section class="other-projects">
 
-			<h2>Other Projects</h2>
+			<p class="eyebrow">MORE</p>
 
-			<p>
-				Другие проекты и учебные работы:
-			</p>
+			<h2>Другие проекты</h2>
 
-			<ul>
-				<li>Coffee Churn</li>
-				<li>CTR Prediction</li>
-				<li>BikeSouth</li>
-				<li>Car Price Prediction</li>
-				<li>NorthCart</li>
-				<li>Afisha</li>
-			</ul>
+			<div class="other-list">
+
+				<span>Coffee Churn</span>
+				<span>CTR Prediction</span>
+				<span>BikeSouth</span>
+				<span>Car Price Prediction</span>
+				<span>NorthCart</span>
+				<span>Afisha</span>
+
+			</div>
 
 		</section>
 
@@ -141,14 +291,23 @@
 
 	<footer>
 
-		<p>
+		<div class="footer-content">
+
+			<div>
+				<strong>Dmitry</strong>
+				<span>Data Scientist / ML Engineer</span>
+			</div>
+
 			<a href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
-				GitHub
+				GitHub ↗
 			</a>
-		</p>
+
+		</div>
 
 	</footer>
+
 
 </body>
 
 </html>
+EOF
