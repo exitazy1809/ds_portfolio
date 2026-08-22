@@ -14,160 +14,90 @@
 
     <header>
 
-        <a href="../../index.html">
+        <a class="project-back" href="../../index.html">
             ← Назад к портфолио
         </a>
 
+        <p class="project-kicker">02 / Case Study</p>
+
         <h1>Darkstore</h1>
 
-        <p class="subtitle">
+        <p class="project-subtitle">
             Прогнозирование недельных продаж
         </p>
 
-        <p>
-            CatBoost · PostgreSQL · Airflow · S3
+        <p class="project-description">
+            Production-пайплайн прогнозирования недельных продаж
+            магазинов и отделов с автоматическим batch inference.
         </p>
+
+        <div class="project-tech">
+            <span>CatBoost</span>
+            <span>PostgreSQL</span>
+            <span>Airflow</span>
+            <span>S3</span>
+            <span>Time Series</span>
+        </div>
+
+        <div class="system-status">
+            <div class="status-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            system running slowly
+        </div>
 
     </header>
 
 
     <main>
 
-        <section>
-
-            <h2>О проекте</h2>
-
-            <p>
-                Production-пайплайн для автоматизации прогнозирования
-                недельных продаж магазинов и отделов.
-            </p>
-
-            <p>
-                Модель формирует прогноз <code>weekly_sales</code>
-                на плановый период и сохраняет результаты
-                в PostgreSQL для дальнейшего использования
-                в аналитике и бизнес-процессах.
-            </p>
-
-        </section>
-
+        <!-- METRICS -->
 
         <section>
-
-            <h2>Бизнес-задача</h2>
-
-            <div class="project-card">
-
-                <p>
-                    Необходимо автоматизировать прогнозирование продаж
-                    для магазинов и отдельных отделов.
-                </p>
-
-                <ul>
-                    <li>планирование продаж;</li>
-                    <li>прогнозирование нагрузки;</li>
-                    <li>аналитика магазинов;</li>
-                    <li>поддержка бизнес-решений.</li>
-                </ul>
-
-            </div>
-
-        </section>
-
-
-        <section>
-
-            <h2>Модель</h2>
-
-            <div class="projects">
-
-                <article class="project-card">
-
-                    <h3>CatBoostRegressor</h3>
-
-                    <p>
-                        Градиентный бустинг используется
-                        для прогнозирования недельного объёма продаж.
-                    </p>
-
-                    <p>
-                        Модель работает с категориальными,
-                        временными и лаговыми признаками.
-                    </p>
-
-                </article>
-
-
-                <article class="project-card">
-
-                    <h3>Оценка качества</h3>
-
-                    <p>
-                        Для оценки модели используются:
-                    </p>
-
-                    <ul>
-                        <li>RMSE</li>
-                        <li>MAE</li>
-                        <li>R²</li>
-                    </ul>
-
-                </article>
-
-
-                <article class="project-card">
-
-                    <h3>Хранение модели</h3>
-
-                    <p>
-                        Обученная модель хранится
-                        в Yandex Object Storage (S3).
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <section>
-
-            <h2>Результаты модели</h2>
 
             <div class="metrics">
 
-                <div>
-                    <strong>RMSE</strong>
-                    <span>2727.69</span>
+                <div class="metric-card">
+                    <span class="metric-label">RMSE</span>
+                    <span class="metric-value">2727.69</span>
                 </div>
 
-                <div>
-                    <strong>MAE</strong>
-                    <span>1281.70</span>
+                <div class="metric-card">
+                    <span class="metric-label">MAE</span>
+                    <span class="metric-value">1281.70</span>
                 </div>
 
-                <div>
-                    <strong>R²</strong>
-                    <span>0.9843</span>
+                <div class="metric-card">
+                    <span class="metric-label">R²</span>
+                    <span class="metric-value">0.9843</span>
                 </div>
 
             </div>
 
-            <div class="project-card">
+        </section>
 
-                <h3>Параметры CatBoost</h3>
 
-                <ul>
-                    <li><code>iterations=1000</code></li>
-                    <li><code>learning_rate=0.05</code></li>
-                    <li><code>depth=8</code></li>
-                    <li><code>loss_function='RMSE'</code></li>
-                    <li><code>use_best_model=True</code></li>
-                </ul>
+        <!-- ABOUT -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">01</span>
+                <h2>О проекте</h2>
+            </div>
+
+            <div class="content-block">
 
                 <p>
-                    Лучшая итерация — <strong>998</strong>.
+                    Система автоматически прогнозирует недельные продажи
+                    магазинов и отделов на плановый период.
+                </p>
+
+                <p>
+                    Результаты сохраняются в PostgreSQL и могут использоваться
+                    в аналитике и бизнес-процессах.
                 </p>
 
             </div>
@@ -175,55 +105,76 @@
         </section>
 
 
+        <!-- BUSINESS -->
+
         <section>
 
-            <h2>Важность признаков</h2>
+            <div class="section-heading">
+                <span class="section-number">02</span>
+                <h2>Бизнес-задача</h2>
+            </div>
 
-            <p>
-                Наиболее значимыми для прогноза оказались признаки,
-                отражающие историческую динамику продаж.
-            </p>
+            <div class="cards">
 
-            <div class="projects">
-
-                <article class="project-card">
-
-                    <h3>Lag Features</h3>
-
-                    <ul>
-                        <li><code>sales_1week_ago</code></li>
-                        <li><code>sales_2week_ago</code></li>
-                        <li><code>sales_4week_ago</code></li>
-                    </ul>
-
+                <article class="card yellow">
+                    <h3>Планирование</h3>
+                    <p>
+                        Прогноз будущих продаж для планирования деятельности магазинов.
+                    </p>
                 </article>
 
+                <article class="card">
+                    <h3>Нагрузка</h3>
+                    <p>
+                        Оценка ожидаемого объёма продаж и нагрузки.
+                    </p>
+                </article>
 
-                <article class="project-card">
-
-                    <h3>Aggregated Features</h3>
-
-                    <ul>
-                        <li><code>mean_sales_4week</code></li>
-                        <li><code>avg_sales_before</code></li>
-                    </ul>
-
+                <article class="card blue">
+                    <h3>Аналитика</h3>
+                    <p>
+                        Использование прогнозов в аналитических и бизнес-сценариях.
+                    </p>
                 </article>
 
             </div>
 
-            <div class="project-card">
+        </section>
+
+
+        <!-- DATA -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">03</span>
+                <h2>Источники данных</h2>
+            </div>
+
+            <div class="cards">
+
+                <article class="card">
+                    <h3>sales</h3>
+                    <p>Исторические продажи.</p>
+                </article>
+
+                <article class="card yellow">
+                    <h3>plan</h3>
+                    <p>Плановые периоды прогнозирования.</p>
+                </article>
+
+                <article class="card">
+                    <h3>stores</h3>
+                    <p>Информация о магазинах.</p>
+                </article>
+
+            </div>
+
+            <div class="content-block" style="margin-top: 16px;">
 
                 <p>
-                    Результаты соответствуют бизнес-логике:
-                    текущий спрос во многом определяется предыдущей
-                    динамикой продаж магазина и отдела.
-                </p>
-
-                <p>
-                    Лаги и агрегаты рассчитываются только на основе
-                    прошлых данных, поэтому они не используют
-                    будущие значения целевой переменной.
+                    Дополнительно использовались внешние признаки,
+                    связанные с периодом и характеристиками продаж.
                 </p>
 
             </div>
@@ -231,13 +182,18 @@
         </section>
 
 
+        <!-- FEATURES -->
+
         <section>
 
-            <h2>Feature Engineering</h2>
+            <div class="section-heading">
+                <span class="section-number">04</span>
+                <h2>Feature Engineering</h2>
+            </div>
 
-            <div class="projects">
+            <div class="feature-list">
 
-                <article class="project-card">
+                <article class="card yellow">
 
                     <h3>Временные признаки</h3>
 
@@ -250,128 +206,250 @@
 
                 </article>
 
-
-                <article class="project-card">
+                <article class="card">
 
                     <h3>Lag Features</h3>
 
                     <ul>
-                        <li>sales_1week_ago</li>
-                        <li>sales_2week_ago</li>
-                        <li>sales_4week_ago</li>
+                        <li><code>sales_1week_ago</code></li>
+                        <li><code>sales_2week_ago</code></li>
+                        <li><code>sales_4week_ago</code></li>
                     </ul>
 
                 </article>
 
-
-                <article class="project-card">
+                <article class="card blue">
 
                     <h3>Rolling Statistics</h3>
 
                     <ul>
-                        <li>mean_sales_2week</li>
-                        <li>mean_sales_4week</li>
-                        <li>avg_sales_before</li>
+                        <li><code>mean_sales_2week</code></li>
+                        <li><code>mean_sales_4week</code></li>
+                        <li><code>avg_sales_before</code></li>
                     </ul>
 
                 </article>
 
             </div>
 
-        </section>
-
-
-        <section>
-
-            <h2>Источники данных</h2>
-
-            <div class="project-card">
-
-                <ul>
-                    <li><strong>sales</strong> — исторические продажи</li>
-                    <li><strong>plan</strong> — плановые периоды</li>
-                    <li><strong>stores</strong> — информация о магазинах</li>
-                    <li><strong>features</strong> — внешние признаки</li>
-                </ul>
-
-            </div>
-
-        </section>
-
-
-        <section>
-
-            <h2>Production Pipeline</h2>
-
-            <div class="projects">
-
-                <article class="project-card">
-                    <h3>01 — PostgreSQL</h3>
-                    <p>
-                        Загружаются исторические продажи,
-                        плановые даты, данные магазинов
-                        и внешние признаки.
-                    </p>
-                </article>
-
-                <article class="project-card">
-                    <h3>02 — Preprocessing</h3>
-                    <p>
-                        Выполняется очистка данных,
-                        генерация временных признаков,
-                        лагов и rolling statistics.
-                    </p>
-                </article>
-
-                <article class="project-card">
-                    <h3>03 — S3</h3>
-                    <p>
-                        Airflow загружает обученную модель
-                        из Yandex Object Storage.
-                    </p>
-                </article>
-
-                <article class="project-card">
-                    <h3>04 — Inference</h3>
-                    <p>
-                        Модель формирует batch-прогноз
-                        для планового периода.
-                    </p>
-                </article>
-
-                <article class="project-card">
-                    <h3>05 — PostgreSQL</h3>
-                    <p>
-                        Результаты сохраняются в таблицу
-                        <code>predictions</code>.
-                    </p>
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <section>
-
-            <h2>Airflow DAG</h2>
-
-            <div class="project-card">
+            <div class="content-block" style="margin-top: 16px;">
 
                 <p>
-                    <code>sales_prediction_batch_inference</code>
+                    Основной акцент сделан на исторической динамике продаж.
+                    Lag и rolling-признаки рассчитываются только по прошлым данным,
+                    поэтому не используют будущие значения target.
                 </p>
 
-                <ol>
-                    <li>load_data</li>
-                    <li>preprocess_features</li>
-                    <li>load_model</li>
-                    <li>run_inference</li>
-                    <li>save_predictions</li>
-                </ol>
+            </div>
+
+        </section>
+
+
+        <!-- MODEL -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">05</span>
+                <h2>Model Development</h2>
+            </div>
+
+            <div class="cards">
+
+                <article class="card yellow">
+                    <h3>CatBoostRegressor</h3>
+                    <p>
+                        Градиентный бустинг используется для прогнозирования
+                        недельного объёма продаж.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Входные признаки</h3>
+                    <p>
+                        Временные, лаговые и агрегированные характеристики
+                        исторических продаж.
+                    </p>
+                </article>
+
+                <article class="card blue">
+                    <h3>Метрики</h3>
+                    <p>
+                        RMSE, MAE и R² используются для оценки качества прогноза.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">06</span>
+                <h2>Результаты модели</h2>
+            </div>
+
+            <div class="metrics">
+
+                <div class="metric-card">
+                    <span class="metric-label">RMSE</span>
+                    <span class="metric-value">2727.69</span>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">MAE</span>
+                    <span class="metric-value">1281.70</span>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">R²</span>
+                    <span class="metric-value">0.9843</span>
+                </div>
+
+            </div>
+
+            <div class="content-block">
+
+                <h3>Параметры CatBoost</h3>
+
+                <pre>
+iterations = 1000
+learning_rate = 0.05
+depth = 8
+loss_function = RMSE
+use_best_model = True
+
+best_iteration = 998
+</pre>
+
+            </div>
+
+        </section>
+
+
+        <!-- IMPORTANCE -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">07</span>
+                <h2>Важность признаков</h2>
+            </div>
+
+            <div class="cards two">
+
+                <article class="card yellow">
+
+                    <h3>Lag Features</h3>
+
+                    <ul>
+                        <li><code>sales_1week_ago</code></li>
+                        <li><code>sales_2week_ago</code></li>
+                        <li><code>sales_4week_ago</code></li>
+                    </ul>
+
+                </article>
+
+                <article class="card blue">
+
+                    <h3>Aggregated Features</h3>
+
+                    <ul>
+                        <li><code>mean_sales_4week</code></li>
+                        <li><code>avg_sales_before</code></li>
+                    </ul>
+
+                </article>
+
+            </div>
+
+            <div class="content-block" style="margin-top: 16px;">
 
                 <p>
-                    DAG запускает полный batch inference pipeline
+                    Историческая динамика продаж является главным источником
+                    информации для прогноза будущего спроса.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PIPELINE -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">08</span>
+                <h2>Production Pipeline</h2>
+            </div>
+
+            <div class="pipeline">
+
+                <div class="pipeline-step">
+                    <span>01</span>
+                    <strong>PostgreSQL</strong>
+                    <small>Input data</small>
+                </div>
+
+                <div class="pipeline-step">
+                    <span>02</span>
+                    <strong>Preprocessing</strong>
+                    <small>Features</small>
+                </div>
+
+                <div class="pipeline-step">
+                    <span>03</span>
+                    <strong>S3</strong>
+                    <small>Model storage</small>
+                </div>
+
+                <div class="pipeline-step">
+                    <span>04</span>
+                    <strong>Inference</strong>
+                    <small>Batch prediction</small>
+                </div>
+
+                <div class="pipeline-step">
+                    <span>05</span>
+                    <strong>PostgreSQL</strong>
+                    <small>Predictions</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- AIRFLOW -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">09</span>
+                <h2>Airflow DAG</h2>
+            </div>
+
+            <div class="content-block">
+
+                <pre>
+load_data
+    ↓
+preprocess_features
+    ↓
+load_model
+    ↓
+run_inference
+    ↓
+save_predictions
+</pre>
+
+                <p>
+                    DAG автоматически запускает полный batch inference pipeline
                     по расписанию.
                 </p>
 
@@ -380,67 +458,36 @@
         </section>
 
 
+        <!-- ENGINEERING -->
+
         <section>
 
-            <h2>Архитектура</h2>
-
-            <div class="pipeline">
-
-                <div>PostgreSQL</div>
-                <span>→</span>
-                <div>Preprocessing</div>
-                <span>→</span>
-                <div>CatBoost</div>
-                <span>→</span>
-                <div>S3</div>
-                <span>→</span>
-                <div>Airflow</div>
-                <span>→</span>
-                <div>Inference</div>
-                <span>→</span>
-                <div>PostgreSQL</div>
-
+            <div class="section-heading">
+                <span class="section-number">10</span>
+                <h2>Инженерные решения</h2>
             </div>
 
-        </section>
+            <div class="cards">
 
-
-        <section>
-
-            <h2>Инженерные решения</h2>
-
-            <div class="projects">
-
-                <article class="project-card">
+                <article class="card">
                     <h3>Единый preprocessing</h3>
                     <p>
-                        Feature engineering вынесен
-                        в отдельный модуль
+                        Feature engineering вынесен в отдельный модуль
                         <code>preprocessing.py</code>.
                     </p>
                 </article>
 
-                <article class="project-card">
+                <article class="card yellow">
                     <h3>Model Storage</h3>
                     <p>
-                        Модель не хранится внутри DAG,
-                        а загружается из S3 во время inference.
+                        Модель загружается из S3 во время inference.
                     </p>
                 </article>
 
-                <article class="project-card">
+                <article class="card blue">
                     <h3>Batch Processing</h3>
                     <p>
-                        Прогнозирование выполняется
-                        автоматически через Airflow.
-                    </p>
-                </article>
-
-                <article class="project-card">
-                    <h3>PostgreSQL Output</h3>
-                    <p>
-                        Результаты сохраняются в отдельную
-                        таблицу <code>predictions</code>.
+                        Прогнозирование автоматически запускается через Airflow.
                     </p>
                 </article>
 
@@ -449,11 +496,60 @@
         </section>
 
 
+        <!-- ARCHITECTURE -->
+
         <section>
 
-            <h2>Tech Stack</h2>
+            <div class="section-heading">
+                <span class="section-number">11</span>
+                <h2>Архитектура</h2>
+            </div>
 
-            <div class="tech-stack">
+            <div class="architecture">
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>PostgreSQL</strong>
+                        <span>Data</span>
+                    </div>
+                </div>
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>Preprocessing</strong>
+                        <span>Features</span>
+                    </div>
+                </div>
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>CatBoost</strong>
+                        <span>Prediction</span>
+                    </div>
+                </div>
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>PostgreSQL</strong>
+                        <span>Output</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STACK -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">12</span>
+                <h2>Technology Stack</h2>
+            </div>
+
+            <div class="tags">
 
                 <span>Python</span>
                 <span>Pandas</span>
@@ -470,15 +566,27 @@
         </section>
 
 
+        <!-- LINKS -->
+
         <section>
 
-            <h2>Проект</h2>
+            <div class="section-heading">
+                <span class="section-number">13</span>
+                <h2>Project</h2>
+            </div>
 
-            <p>
-                <a href="https://github.com/exitazy1809/ds_portfolio/tree/main/ds_pss" target="_blank">
-                    GitHub — project source →
+            <div class="project-links">
+
+                <a class="project-button" href="https://github.com/exitazy1809/ds_portfolio/tree/main/ds_pss"
+                    target="_blank">
+                    GitHub →
                 </a>
-            </p>
+
+                <a class="project-button secondary" href="../../index.html">
+                    ← Портфолио
+                </a>
+
+            </div>
 
         </section>
 
@@ -487,9 +595,18 @@
 
     <footer>
 
-        <a href="../../index.html">
-            ← Назад к портфолио
-        </a>
+        <div class="footer-inner">
+
+            <div>
+                <strong>Dmitriy Karakcheev</strong>
+                <span>Data Scientist / ML Engineer</span>
+            </div>
+
+            <a href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
+                GitHub ↗
+            </a>
+
+        </div>
 
     </footer>
 

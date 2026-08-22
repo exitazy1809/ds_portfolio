@@ -14,284 +14,520 @@
 
     <header>
 
-        <a href="../../index.html">
+        <a class="project-back" href="../../index.html">
             ← Назад к портфолио
         </a>
 
+        <p class="project-kicker">03 / Case Study</p>
+
         <h1>Hotel Bookings</h1>
 
-        <p class="subtitle">
+        <p class="project-subtitle">
             Прогнозирование отмен бронирований
         </p>
 
-        <p>
-            CatBoost · XGBoost · LightGBM · NLP · SHAP · Optuna
+        <p class="project-description">
+            ML-пайплайн для прогнозирования вероятности отмены бронирования
+            с использованием табличных и текстовых признаков.
         </p>
+
+        <div class="project-tech">
+            <span>CatBoost</span>
+            <span>XGBoost</span>
+            <span>LightGBM</span>
+            <span>TF-IDF</span>
+            <span>SHAP</span>
+            <span>Optuna</span>
+        </div>
+
+        <div class="system-status">
+            <div class="status-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            system running slowly
+        </div>
 
     </header>
 
 
     <main>
 
-        <section>
-
-            <h2>О проекте</h2>
-
-            <p>
-                ML-модель для прогнозирования вероятности отмены
-                бронирования с использованием характеристик брони
-                и текстовой информации из отзывов клиентов.
-            </p>
-
-            <p>
-                Основная бизнес-цель — заранее выявлять рискованные
-                бронирования и оценивать потенциальный revenue uplift
-                от целевых интервенций.
-            </p>
-
-        </section>
-
+        <!-- BUSINESS RESULT -->
 
         <section>
-
-            <h2>Данные</h2>
 
             <div class="metrics">
 
-                <div>
-                    <strong>Bookings</strong>
-                    <span>30 733</span>
+                <div class="metric-card">
+                    <span class="metric-label">Bookings</span>
+                    <span class="metric-value">30 733</span>
                 </div>
 
-                <div>
-                    <strong>Features</strong>
-                    <span>526</span>
+                <div class="metric-card">
+                    <span class="metric-label">Features</span>
+                    <span class="metric-value">526</span>
                 </div>
 
-                <div>
-                    <strong>TF-IDF</strong>
-                    <span>500</span>
+                <div class="metric-card">
+                    <span class="metric-label">IR · TEST</span>
+                    <span class="metric-value">214.5M ₽</span>
                 </div>
 
             </div>
 
-            <p>
-                Около 27% бронирований содержали доступный текстовый отзыв.
-                Текстовые данные были преобразованы в TF-IDF представление
-                с ограничением словаря до 500 признаков.
-            </p>
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">01</span>
+                <h2>О проекте</h2>
+            </div>
+
+            <div class="content-block">
+
+                <p>
+                    Модель прогнозирует вероятность отмены бронирования
+                    по характеристикам брони и текстовой информации.
+                </p>
+
+                <p>
+                    Основная бизнес-цель — заранее выявлять рискованные
+                    бронирования и оценивать потенциальный revenue uplift.
+                </p>
+
+            </div>
 
         </section>
 
 
+        <!-- DATA -->
+
         <section>
 
-            <h2>Feature Engineering</h2>
+            <div class="section-heading">
+                <span class="section-number">02</span>
+                <h2>Данные</h2>
+            </div>
 
-            <p>
-                Были созданы бизнес-интерпретируемые признаки:
-            </p>
+            <div class="cards">
 
-            <ul>
-                <li><code>total_guests</code> — общее количество гостей;</li>
-                <li><code>stay_nights</code> — продолжительность проживания;</li>
-                <li><code>price_per_night</code> — стоимость одной ночи;</li>
-                <li><code>is_last_minute</code> — бронирование менее чем за 3 дня;</li>
-                <li><code>has_special_requests</code> — наличие специальных запросов.</li>
-            </ul>
+                <article class="card yellow">
+                    <h3>30 733</h3>
+                    <p>
+                        уникальных бронирования.
+                    </p>
+                </article>
 
-            <p>
-                Дополнительно из текстов отзывов были получены
-                500 TF-IDF признаков.
-            </p>
+                <article class="card">
+                    <h3>526</h3>
+                    <p>
+                        признаков после feature engineering.
+                    </p>
+                </article>
+
+                <article class="card blue">
+                    <h3>500</h3>
+                    <p>
+                        TF-IDF признаков из отзывов.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="content-block" style="margin-top: 16px;">
+
+                <p>
+                    Около 27% бронирований содержали доступный текстовый отзыв.
+                    Текст был преобразован в TF-IDF представление с ограничением
+                    словаря до 500 признаков.
+                </p>
+
+            </div>
 
         </section>
 
 
+        <!-- FEATURES -->
+
         <section>
 
-            <h2>Моделирование</h2>
+            <div class="section-heading">
+                <span class="section-number">03</span>
+                <h2>Feature Engineering</h2>
+            </div>
 
-            <div class="projects">
+            <div class="cards">
 
-                <article class="project-card">
+                <article class="card">
+
+                    <h3>Booking Features</h3>
+
+                    <ul>
+                        <li><code>total_guests</code></li>
+                        <li><code>stay_nights</code></li>
+                        <li><code>price_per_night</code></li>
+                    </ul>
+
+                </article>
+
+                <article class="card yellow">
+
+                    <h3>Behavior Features</h3>
+
+                    <ul>
+                        <li><code>is_last_minute</code></li>
+                        <li><code>has_special_requests</code></li>
+                    </ul>
+
+                </article>
+
+                <article class="card blue">
+
+                    <h3>NLP</h3>
+
+                    <p>
+                        500 TF-IDF признаков из текстовых отзывов.
+                    </p>
+
+                </article>
+
+            </div>
+
+            <div class="content-block" style="margin-top: 16px;">
+
+                <p>
+                    Признаки позволяют одновременно учитывать характеристики
+                    бронирования и содержательную информацию из отзывов клиентов.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MODEL -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">04</span>
+                <h2>Model Development</h2>
+            </div>
+
+            <div class="cards">
+
+                <article class="card yellow">
                     <h3>CatBoost</h3>
                     <p>
-                        Градиентный бустинг с поддержкой
-                        категориальных признаков.
+                        Выбран в качестве финального алгоритма.
                     </p>
                 </article>
 
-                <article class="project-card">
+                <article class="card">
                     <h3>LightGBM</h3>
                     <p>
-                        Альтернативная модель для сравнения
-                        качества классификации.
+                        Использовался для сравнения качества.
                     </p>
                 </article>
 
-                <article class="project-card">
+                <article class="card blue">
                     <h3>XGBoost</h3>
                     <p>
-                        Дополнительный baseline
-                        для сравнения алгоритмов.
+                        Также участвовал в сравнении моделей.
                     </p>
                 </article>
 
             </div>
 
-            <p>
-                Гиперпараметры оптимизировались с использованием Optuna.
-                Для итоговой модели использовалась схема разделения данных
-                на train, calibration и test выборки.
-            </p>
+            <div class="content-block" style="margin-top: 16px;">
 
-            <p>
-                Вероятности модели дополнительно калибровались,
-                после чего подбирался оптимальный порог классификации
-                по бизнес-метрике Incremental Revenue.
-            </p>
+                <p>
+                    Гиперпараметры оптимизировались с помощью Optuna.
+                    Данные разделялись на train, calibration и test.
+                    После обучения вероятности модели калибровались.
+                </p>
+
+            </div>
 
         </section>
 
 
+        <!-- FINAL MODEL -->
+
         <section>
 
-            <h2>Итоговая модель</h2>
+            <div class="section-heading">
+                <span class="section-number">05</span>
+                <h2>Итоговая модель</h2>
+            </div>
+
+            <div class="cards">
+
+                <article class="card yellow">
+                    <h3>CatBoost</h3>
+                    <p>
+                        Финальная модель.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Isotonic Calibration</h3>
+                    <p>
+                        Калибровка вероятностей модели.
+                    </p>
+                </article>
+
+                <article class="card blue">
+                    <h3>Threshold</h3>
+                    <p>
+                        Оптимальный порог — <strong>0.533</strong>.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="content-block" style="margin-top: 16px;">
+
+                <pre>
+depth = 4
+learning_rate ≈ 0.196
+iterations = 480
+l2_leaf_reg ≈ 7.25
+threshold = 0.533
+</pre>
+
+            </div>
+
+        </section>
+
+
+        <!-- BUSINESS -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">06</span>
+                <h2>Business Result</h2>
+            </div>
 
             <div class="metrics">
 
-                <div>
-                    <strong>Model</strong>
-                    <span>CatBoost</span>
+                <div class="metric-card">
+                    <span class="metric-label">IR · CALIBRATION</span>
+                    <span class="metric-value">215.4M ₽</span>
                 </div>
 
-                <div>
-                    <strong>Iterations</strong>
-                    <span>480</span>
+                <div class="metric-card">
+                    <span class="metric-label">IR · TEST</span>
+                    <span class="metric-value">214.5M ₽</span>
                 </div>
 
-                <div>
-                    <strong>Threshold</strong>
-                    <span>0.533</span>
+                <div class="metric-card">
+                    <span class="metric-label">STABILITY</span>
+                    <span class="metric-value">HIGH</span>
                 </div>
 
             </div>
 
-            <p>
-                Финальная модель:
-                <code>CatBoost + Isotonic Calibration</code>.
-            </p>
+            <div class="content-block">
 
-            <ul>
-                <li>depth = 4</li>
-                <li>learning_rate ≈ 0.196</li>
-                <li>iterations = 480</li>
-                <li>l2_leaf_reg ≈ 7.25</li>
-                <li>optimal threshold = 0.533</li>
-            </ul>
-
-        </section>
-
-
-        <section>
-
-            <h2>Бизнес-результат</h2>
-
-            <div class="metrics">
-
-                <div>
-                    <strong>Calibration</strong>
-                    <span>215.4 млн ₽</span>
-                </div>
-
-                <div>
-                    <strong>Test</strong>
-                    <span>214.5 млн ₽</span>
-                </div>
-
-                <div>
-                    <strong>Metric</strong>
-                    <span>IR</span>
-                </div>
+                <p>
+                    Значения Incremental Revenue на calibration и test
+                    находятся на близком уровне, что говорит о стабильности
+                    выбранного решения.
+                </p>
 
             </div>
 
-            <p>
-                Значения Incremental Revenue на calibration и test
-                выборках находятся на близком уровне, что является
-                хорошим признаком устойчивости выбранного решения.
-            </p>
+        </section>
+
+
+        <!-- INTERPRETATION -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">07</span>
+                <h2>Model Interpretation</h2>
+            </div>
+
+            <div class="cards two">
+
+                <article class="card yellow">
+                    <h3>SHAP</h3>
+                    <p>
+                        Текстовые TF-IDF признаки показали значительный
+                        вклад в прогнозирование отмен.
+                    </p>
+                </article>
+
+                <article class="card blue">
+                    <h3>Tabular Features</h3>
+                    <p>
+                        Среди наиболее заметных признаков — длительность
+                        проживания, количество гостей, стоимость и специальные запросы.
+                    </p>
+                </article>
+
+            </div>
 
         </section>
 
 
-        <section>
-
-            <h2>Интерпретация модели</h2>
-
-            <p>
-                SHAP-анализ показал значительный вклад текстовых
-                TF-IDF признаков в прогнозирование отмен.
-            </p>
-
-            <p>
-                Среди табличных признаков наиболее заметны
-                продолжительность проживания, количество гостей,
-                стоимость проживания и наличие специальных запросов.
-            </p>
-
-            <p>
-                Сочетание классических табличных признаков и NLP
-                позволяет учитывать как характеристики бронирования,
-                так и текстовую историю взаимодействия клиента.
-            </p>
-
-        </section>
-
+        <!-- PIPELINE -->
 
         <section>
 
-            <h2>Pipeline</h2>
+            <div class="section-heading">
+                <span class="section-number">08</span>
+                <h2>ML Pipeline</h2>
+            </div>
 
             <div class="pipeline">
 
-                <div>Data</div>
-                <span>→</span>
+                <div class="pipeline-step">
+                    <span>01</span>
+                    <strong>Data</strong>
+                    <small>Подготовка данных</small>
+                </div>
 
-                <div>Feature Engineering</div>
-                <span>→</span>
+                <div class="pipeline-step">
+                    <span>02</span>
+                    <strong>Features</strong>
+                    <small>Feature Engineering</small>
+                </div>
 
-                <div>TF-IDF</div>
-                <span>→</span>
+                <div class="pipeline-step">
+                    <span>03</span>
+                    <strong>TF-IDF</strong>
+                    <small>NLP features</small>
+                </div>
 
-                <div>Train</div>
-                <span>→</span>
+                <div class="pipeline-step">
+                    <span>04</span>
+                    <strong>Train</strong>
+                    <small>Optuna</small>
+                </div>
 
-                <div>Optuna</div>
-                <span>→</span>
-
-                <div>Calibration</div>
-                <span>→</span>
-
-                <div>Threshold</div>
-                <span>→</span>
-
-                <div>SHAP</div>
-                <span>→</span>
-
-                <div>Business Evaluation</div>
+                <div class="pipeline-step">
+                    <span>05</span>
+                    <strong>Evaluate</strong>
+                    <small>Business metric</small>
+                </div>
 
             </div>
 
         </section>
 
 
+        <!-- PRODUCTION -->
+
         <section>
 
-            <h2>Стек</h2>
+            <div class="section-heading">
+                <span class="section-number">09</span>
+                <h2>Production</h2>
+            </div>
 
-            <div class="tech-stack">
+            <div class="content-block">
+
+                <p>
+                    Production-часть проекта использует batch inference.
+                    Модель и preprocessing сохраняются как ML-артефакты,
+                    данные загружаются из PostgreSQL, а результаты записываются
+                    обратно в базу.
+                </p>
+
+            </div>
+
+            <div class="architecture">
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>PostgreSQL</strong>
+                        <span>Input</span>
+                    </div>
+                </div>
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>Airflow</strong>
+                        <span>Orchestration</span>
+                    </div>
+                </div>
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>S3</strong>
+                        <span>ML artifacts</span>
+                    </div>
+                </div>
+
+                <div class="architecture-column">
+                    <div class="architecture-box">
+                        <strong>Predictions</strong>
+                        <span>PostgreSQL</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MLOPS -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">10</span>
+                <h2>MLOps</h2>
+            </div>
+
+            <div class="cards">
+
+                <article class="card">
+                    <h3>Airflow</h3>
+                    <p>
+                        Оркестрация batch inference.
+                    </p>
+                </article>
+
+                <article class="card yellow">
+                    <h3>S3</h3>
+                    <p>
+                        Хранение модели и preprocessing.
+                    </p>
+                </article>
+
+                <article class="card blue">
+                    <h3>PostgreSQL</h3>
+                    <p>
+                        Источник данных и хранилище результатов.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- STACK -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">11</span>
+                <h2>Technology Stack</h2>
+            </div>
+
+            <div class="tags">
 
                 <span>Python</span>
                 <span>Pandas</span>
@@ -309,15 +545,48 @@
         </section>
 
 
+        <!-- RESULT -->
+
         <section>
 
-            <h2>Результат</h2>
+            <div class="section-heading">
+                <span class="section-number">12</span>
+                <h2>Result</h2>
+            </div>
 
-            <p>
-                В результате построен полный ML-пайплайн прогнозирования
-                отмен: от подготовки данных и генерации признаков
-                до калибровки, оптимизации порога и оценки бизнес-эффекта.
-            </p>
+            <div class="content-block">
+
+                <p>
+                    В результате построен полный ML-пайплайн прогнозирования
+                    отмен — от подготовки данных и NLP до калибровки,
+                    оптимизации порога и оценки бизнес-эффекта.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- LINKS -->
+
+        <section>
+
+            <div class="section-heading">
+                <span class="section-number">13</span>
+                <h2>Project</h2>
+            </div>
+
+            <div class="project-links">
+
+                <a class="project-button" href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
+                    GitHub →
+                </a>
+
+                <a class="project-button secondary" href="../../index.html">
+                    ← Портфолио
+                </a>
+
+            </div>
 
         </section>
 
@@ -326,15 +595,18 @@
 
     <footer>
 
-        <a href="../../index.html">
-            ← Назад к портфолио
-        </a>
+        <div class="footer-inner">
 
-        <span> · </span>
+            <div>
+                <strong>Dmitriy Karakcheev</strong>
+                <span>Data Scientist / ML Engineer</span>
+            </div>
 
-        <a href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
-            GitHub
-        </a>
+            <a href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
+                GitHub ↗
+            </a>
+
+        </div>
 
     </footer>
 
