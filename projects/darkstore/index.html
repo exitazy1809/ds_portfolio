@@ -130,6 +130,132 @@
     </section>
 
 
+    <!-- RESULTS -->
+
+    <section>
+
+        <h2>Результаты модели</h2>
+
+        <div class="projects">
+
+            <article class="project-card">
+
+                <h3>RMSE</h3>
+
+                <p>
+                    <strong>2727.69</strong>
+                </p>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <h3>MAE</h3>
+
+                <p>
+                    <strong>1281.70</strong>
+                </p>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <h3>R²</h3>
+
+                <p>
+                    <strong>0.9843</strong>
+                </p>
+
+                <p>
+                    Модель объясняет более 98% вариации продаж.
+                </p>
+
+            </article>
+
+        </div>
+
+
+        <div class="project-card">
+
+            <h3>Параметры CatBoost</h3>
+
+            <ul>
+                <li><code>iterations=1000</code></li>
+                <li><code>learning_rate=0.05</code></li>
+                <li><code>depth=8</code></li>
+                <li><code>loss_function='RMSE'</code></li>
+                <li><code>use_best_model=True</code></li>
+            </ul>
+
+            <p>
+                Лучшая итерация — <strong>998</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURE IMPORTANCE -->
+
+    <section>
+
+        <h2>Важность признаков</h2>
+
+        <p>
+            Наиболее значимыми для прогноза оказались признаки,
+            отражающие историческую динамику продаж:
+        </p>
+
+        <div class="projects">
+
+            <article class="project-card">
+
+                <h3>Lag Features</h3>
+
+                <ul>
+                    <li><code>sales_1week_ago</code></li>
+                    <li><code>sales_2week_ago</code></li>
+                    <li><code>sales_4week_ago</code></li>
+                </ul>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <h3>Aggregated Features</h3>
+
+                <ul>
+                    <li><code>mean_sales_4week</code></li>
+                    <li><code>avg_sales_before</code></li>
+                </ul>
+
+            </article>
+
+        </div>
+
+        <div class="project-card">
+
+            <p>
+                Результаты соответствуют бизнес-логике:
+                текущий спрос во многом определяется предыдущей
+                динамикой продаж магазина и отдела.
+            </p>
+
+            <p>
+                Лаги и агрегаты рассчитываются только на основе
+                прошлых данных, поэтому они не используют
+                будущие значения целевой переменной.
+            </p>
+
+        </div>
+
+    </section>
+
+
     <!-- FEATURES -->
 
     <section>
