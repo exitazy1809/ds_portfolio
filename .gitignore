@@ -1,0 +1,19 @@
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# Environment / secrets
+.env
+*.env
+
+# ML artifacts
+*.pkl
+*.joblib
+
+# CatBoost training artifacts
+catboost_info/
