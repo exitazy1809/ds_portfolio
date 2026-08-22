@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darkstore — Data Science Case Study</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Darkstore</h1>
+    <p>Прогнозирование недельных продаж</p>
+    <p>CatBoost · PostgreSQL · Airflow · S3</p>
+</header>
+
+<main>
+
+<section>
+    <h2>О проекте</h2>
+
+    <p>
+        Production-пайплайн для автоматизации прогнозирования
+        недельных продаж магазинов и отделов.
+    </p>
+
+    <p>
+        Модель используется для планирования продаж, оценки нагрузки
+        и поддержки бизнес-решений.
+    </p>
+</section>
+
+<section>
+    <h2>Результат</h2>
+
+    <div class="projects">
+
+        <article class="project-card">
+            <h3>CatBoostRegressor</h3>
+            <p>
+                Градиентный бустинг для прогнозирования
+                <code>weekly_sales</code>.
+            </p>
+        </article>
+
+        <article class="project-card">
+            <h3>Time Series Features</h3>
+            <p>
+                Лаги, rolling statistics и временные признаки
+                для моделирования динамики продаж.
+            </p>
+        </article>
+
+        <article class="project-card">
+            <h3>Batch Inference</h3>
+            <p>
+                Регулярный запуск прогнозирования через
+                Apache Airflow.
+            </p>
+        </article>
+
+    </div>
+</section>
+
+<section>
+    <h2>Feature Engineering</h2>
+
+    <ul>
+        <li>month</li>
+        <li>quarter</li>
+        <li>year</li>
+        <li>sales_1week_ago</li>
+        <li>sales_2week_ago</li>
+        <li>sales_4week_ago</li>
+        <li>mean_sales_2week</li>
+        <li>mean_sales_4week</li>
+        <li>avg_sales_before</li>
+    </ul>
+
+    <p>
+        Дополнительно выполняется обработка аномалий,
+        заполнение пропусков и подготовка категориальных признаков.
+    </p>
+</section>
+
+<section>
+    <h2>Production Pipeline</h2>
+
+    <div class="project-card">
+
+        <p><strong>1. PostgreSQL</strong></p>
+        <p>
+            Загружаются исторические продажи, плановые даты,
+            информация о магазинах и внешние признаки.
+        </p>
+
+        <p><strong>2. Preprocessing</strong></p>
+        <p>
+            Генерируются временные признаки, лаги и rolling statistics.
+        </p>
+
+        <p><strong>3. S3</strong></p>
+        <p>
+            Обученная модель хранится в Yandex Object Storage.
+        </p>
+
+        <p><strong>4. Batch inference</strong></p>
+        <p>
+            Airflow загружает модель и выполняет прогнозирование
+            для планового периода.
+        </p>
+
+        <p><strong>5. PostgreSQL</strong></p>
+        <p>
+            Результаты сохраняются в таблицу
+            <code>predictions</code>.
+        </p>
+
+    </div>
+</section>
+
+<section>
+    <h2>Airflow DAG</h2>
+
+    <p>
+        Основной DAG:
+    </p>
+
+    <p>
+        <code>sales_prediction_batch_inference</code>
+    </p>
+
+    <ol>
+        <li>load_data</li>
+        <li>preprocess_features</li>
+        <li>load_model</li>
+        <li>run_inference</li>
+        <li>save_predictions</li>
+    </ol>
+
+    <p>
+        DAG запускается по расписанию и выполняет полный
+        batch inference pipeline.
+    </p>
+</section>
+
+<section>
+    <h2>Архитектура</h2>
+
+    <div class="project-card">
+        <p>
+            PostgreSQL
+            →
+            Feature Engineering
+            →
+            CatBoost
+            →
+            S3
+            →
+            Airflow
+            →
+            Predictions
+            →
+            PostgreSQL
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>Технологии</h2>
+
+    <p>
+        Python · Pandas · NumPy · CatBoost · PostgreSQL ·
+        Apache Airflow · S3 · boto3 · psycopg2
+    </p>
+</section>
+
+<section>
+    <h2>Проект</h2>
+
+    <p>
+        <a href="https://github.com/exitazy1809/ds_portfolio/tree/main/ds_pss"
+           target="_blank">
+            GitHub →
+        </a>
+    </p>
+
+    <p>
+        <a href="../../">
+            ← Вернуться к портфолио
+        </a>
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>Darkstore · Data Science Case Study</p>
+</footer>
+
+</body>
+</html>
