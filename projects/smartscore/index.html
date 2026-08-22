@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>SmartScore — Data Science Project</title>
+
+	<link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+	<header>
+
+		<a href="../../index.html">
+			← Back to portfolio
+		</a>
+
+		<h1>SmartScore</h1>
+
+		<p class="subtitle">
+			ML-система скоринга объявлений недвижимости
+		</p>
+
+		<p>
+			Full-cycle ML · Classification · Feature Engineering · MLOps
+		</p>
+
+	</header>
+
+
+	<main>
+
+		<!-- HERO -->
+
+		<section>
+
+			<div class="metrics">
+
+				<div>
+					<strong>ROC-AUC</strong>
+					<span>0.9919</span>
+				</div>
+
+				<div>
+					<strong>PR-AUC</strong>
+					<span>0.9378</span>
+				</div>
+
+				<div>
+					<strong>Recall</strong>
+					<span>0.9796</span>
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- BUSINESS PROBLEM -->
+
+		<section>
+
+			<h2>01 — Business Problem</h2>
+
+			<p>
+				Необходимо определить, какие объявления имеют высокий
+				потенциальный спрос относительно других объектов
+				в том же городе и сегменте.
+			</p>
+
+			<p>
+				SmartScore должен использоваться как дополнительный
+				сигнал для ранжирования объявлений и помогать
+				улучшать качество выдачи.
+			</p>
+
+			<p>
+				Бизнес-цель — повысить релевантность выдачи,
+				улучшить пользовательский опыт и снизить долю
+				неактивных или нерелевантных объявлений.
+			</p>
+
+		</section>
+
+
+		<!-- DATA -->
+
+		<section>
+
+			<h2>02 — Data</h2>
+
+			<div class="metrics">
+
+				<div>
+					<strong>Listings</strong>
+					<span>661K+</span>
+				</div>
+
+				<div>
+					<strong>Cities</strong>
+					<span>10</span>
+				</div>
+
+				<div>
+					<strong>Features</strong>
+					<span>64</span>
+				</div>
+
+			</div>
+
+			<p>
+				Основная таблица listings содержит характеристики
+				объектов, параметры хозяев, цены, рейтинги,
+				доступность и информацию об отзывах.
+			</p>
+
+			<p>
+				Дополнительно использовались данные calendar
+				и reviews.
+			</p>
+
+		</section>
+
+
+		<!-- TARGET -->
+
+		<section>
+
+			<h2>03 — Target Engineering</h2>
+
+			<p>
+				Целевая переменная <strong>is_high_demand</strong>
+				строилась относительно сегмента
+				<strong>город + тип жилья</strong>.
+			</p>
+
+			<p>
+				Для каждого сегмента рассчитывались медианы количества
+				отзывов, цены и рейтинга.
+			</p>
+
+			<p>
+				Объявление считалось high-demand, если одновременно:
+			</p>
+
+			<ul>
+
+				<li>
+					количество отзывов выше медианы сегмента;
+				</li>
+
+				<li>
+					цена не ниже медианной;
+				</li>
+
+				<li>
+					рейтинг не ниже медианного.
+				</li>
+
+			</ul>
+
+			<p>
+				Признаки, участвующие в формировании target, а также
+				потенциально содержащие информацию о будущем спросе,
+				исключались из модели для снижения риска data leakage.
+			</p>
+
+		</section>
+
+
+		<!-- FEATURE ENGINEERING -->
+
+		<section>
+
+			<h2>04 — Feature Engineering</h2>
+
+			<p>
+				Для модели были сформированы дополнительные признаки,
+				описывающие характеристики объекта и владельца.
+			</p>
+
+			<div class="tech-stack">
+
+				<span>price_per_person</span>
+				<span>avg_stay_nights</span>
+				<span>stay_ratio</span>
+				<span>host_age_days</span>
+				<span>host_quality_score</span>
+				<span>name_length</span>
+				<span>name_word_count</span>
+				<span>desc_length</span>
+				<span>amenities_count</span>
+				<span>bathrooms_per_guest</span>
+				<span>beds_per_guest</span>
+
+			</div>
+
+			<p>
+				Для категориальных признаков использовалась встроенная
+				обработка CatBoost без One-Hot Encoding.
+			</p>
+
+			<p>
+				Текстовые поля очищались и передавались в CatBoost
+				для внутреннего преобразования.
+			</p>
+
+		</section>
+
+
+		<!-- MODELING -->
+
+		<section>
+
+			<h2>05 — Model Development</h2>
+
+			<p>
+				Из-за дисбаланса классов использовались специальные
+				механизмы взвешивания.
+			</p>
+
+			<div class="model-table">
+
+				<table>
+
+					<thead>
+
+						<tr>
+							<th>Model</th>
+							<th>ROC-AUC</th>
+							<th>PR-AUC</th>
+							<th>F1</th>
+							<th>Recall</th>
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<tr>
+							<td>Logistic Regression</td>
+							<td>0.9262</td>
+							<td>0.6229</td>
+							<td>0.5812</td>
+							<td>0.8514</td>
+						</tr>
+
+						<tr class="best-model">
+							<td><strong>CatBoost</strong></td>
+							<td><strong>0.9919</strong></td>
+							<td><strong>0.9378</strong></td>
+							<td><strong>0.8223</strong></td>
+							<td><strong>0.9796</strong></td>
+						</tr>
+
+						<tr>
+							<td>LightGBM</td>
+							<td>0.9684</td>
+							<td>0.8130</td>
+							<td>0.6768</td>
+							<td>0.9345</td>
+						</tr>
+
+						<tr>
+							<td>XGBoost</td>
+							<td>0.9655</td>
+							<td>0.7998</td>
+							<td>0.6485</td>
+							<td>0.9454</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
+			<p>
+				CatBoost показал лучший результат по основным метрикам
+				и был выбран в качестве финальной модели.
+			</p>
+			<h3>ROC-AUC comparison</h3>
+
+			<div class="chart">
+
+				<div class="chart-row">
+					<span class="chart-label">Logistic Regression</span>
+
+					<div class="bar-container">
+						<div class="bar" style="width: 92.62%;">
+							0.9262
+						</div>
+					</div>
+				</div>
+
+
+				<div class="chart-row">
+					<span class="chart-label">CatBoost</span>
+
+					<div class="bar-container">
+						<div class="bar best" style="width: 99.19%;">
+							0.9919
+						</div>
+					</div>
+				</div>
+
+
+				<div class="chart-row">
+					<span class="chart-label">LightGBM</span>
+
+					<div class="bar-container">
+						<div class="bar" style="width: 96.84%;">
+							0.9684
+						</div>
+					</div>
+				</div>
+
+
+				<div class="chart-row">
+					<span class="chart-label">XGBoost</span>
+
+					<div class="bar-container">
+						<div class="bar" style="width: 96.55%;">
+							0.9655
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<h3>PR-AUC comparison</h3>
+
+			<div class="chart">
+
+				<div class="chart-row">
+					<span class="chart-label">Logistic Regression</span>
+
+					<div class="bar-container">
+						<div class="bar" style="width: 62.29%;">
+							0.6229
+						</div>
+					</div>
+				</div>
+
+
+				<div class="chart-row">
+					<span class="chart-label">CatBoost</span>
+
+					<div class="bar-container">
+						<div class="bar best" style="width: 93.78%;">
+							0.9378
+						</div>
+					</div>
+				</div>
+
+
+				<div class="chart-row">
+					<span class="chart-label">LightGBM</span>
+
+					<div class="bar-container">
+						<div class="bar" style="width: 81.30%;">
+							0.8130
+						</div>
+					</div>
+				</div>
+
+
+				<div class="chart-row">
+					<span class="chart-label">XGBoost</span>
+
+					<div class="bar-container">
+						<div class="bar" style="width: 79.98%;">
+							0.7998
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+
+		<!-- OPTUNA -->
+
+		<section>
+
+			<h2>06 — Hyperparameter Optimization</h2>
+
+			<p>
+				Для подбора гиперпараметров использовался
+				<strong>Optuna</strong>.
+			</p>
+
+			<p>
+				Основной оптимизируемой метрикой был PR-AUC,
+				поскольку задача характеризуется дисбалансом классов.
+			</p>
+
+			<pre>
+iterations: 984
+learning_rate: 0.09884
+depth: 10
+l2_leaf_reg: 7.4489
+random_strength: 2.2944
+bagging_temperature: 0.6931
+        </pre>
+
+		</section>
+
+
+		<!-- EVALUATION -->
+
+		<section>
+
+			<h2>07 — Evaluation</h2>
+
+			<p>
+				Финальная модель показывает высокий Recall —
+				<strong>0.9796</strong>, то есть обнаруживает
+				большую часть объявлений, относящихся к целевому классу.
+			</p>
+
+			<p>
+				При этом PR-AUC составляет <strong>0.9378</strong>,
+				что является особенно важной метрикой при дисбалансе классов.
+			</p>
+
+		</section>
+
+
+		<!-- PRODUCTION -->
+
+		<section>
+
+			<!-- PRODUCTION -->
+
+			<section>
+
+				<h2>08 — Production Architecture</h2>
+
+				<p>
+					Batch inference запускается через Apache Airflow.
+					Данные и ML-артефакты хранятся отдельно, а результат
+					расчёта возвращается в PostgreSQL.
+				</p>
+
+				<div class="architecture">
+
+					<div class="architecture-column">
+
+						<div class="architecture-box database">
+							<strong>PostgreSQL</strong>
+							<span>Input data</span>
+						</div>
+
+						<div class="architecture-arrow">
+							↓
+						</div>
+
+						<div class="architecture-box airflow">
+							<strong>Apache Airflow</strong>
+							<span>Orchestration</span>
+						</div>
+
+					</div>
+
+
+					<div class="architecture-column">
+
+						<div class="architecture-box">
+							<strong>Preprocessing</strong>
+							<span>Data cleaning</span>
+						</div>
+
+						<div class="architecture-arrow">
+							↓
+						</div>
+
+						<div class="architecture-box">
+							<strong>Feature Engineering</strong>
+							<span>Feature generation</span>
+						</div>
+
+					</div>
+
+
+					<div class="architecture-column">
+
+						<div class="architecture-box s3">
+							<strong>S3</strong>
+							<span>Model + artifacts</span>
+						</div>
+
+						<div class="architecture-arrow">
+							↓
+						</div>
+
+						<div class="architecture-box model">
+							<strong>CatBoost</strong>
+							<span>Inference</span>
+						</div>
+
+					</div>
+
+
+					<div class="architecture-column">
+
+						<div class="architecture-box">
+							<strong>Predictions</strong>
+							<span>SmartScore</span>
+						</div>
+
+						<div class="architecture-arrow">
+							↓
+						</div>
+
+						<div class="architecture-box database">
+							<strong>PostgreSQL</strong>
+							<span>Output table</span>
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<h3>Airflow DAG</h3>
+
+				<pre>
+check_s3
+    ↓
+load_data
+    ↓
+get_inference_date
+    ↓
+load_model
+    ↓
+preprocess
+    ↓
+predict
+    ↓
+save_results
+    </pre>
+
+			</section>
+
+
+			<!-- MLOPS -->
+
+			<section>
+
+				<h2>09 — MLOps</h2>
+
+				<ul>
+
+					<li>
+						Apache Airflow используется для оркестрации batch inference.
+					</li>
+
+					<li>
+						ML-модель и preprocessing сохраняются в S3.
+					</li>
+
+					<li>
+						Данные загружаются из PostgreSQL.
+					</li>
+
+					<li>
+						Результаты инференса сохраняются обратно в PostgreSQL.
+					</li>
+
+					<li>
+						Pipeline поддерживает повторный запуск
+						без дублирования результатов за одну дату.
+					</li>
+
+				</ul>
+
+				<h3>DAG</h3>
+
+				<pre>
+check_s3
+   ↓
+load_data
+   ↓
+get_inference_date
+   ↓
+load_model
+   ↓
+preprocess
+   ↓
+predict
+   ↓
+save_results
+        </pre>
+
+			</section>
+
+
+			<!-- RESULT -->
+
+			<section>
+
+				<h2>10 — Result</h2>
+
+				<p>
+					Результатом работы системы является числовой
+					SmartScore для каждого объявления.
+				</p>
+
+				<p>
+					Score сохраняется вместе с идентификатором объекта
+					и датой инференса:
+				</p>
+
+				<pre>
+listing_id
+score
+inference_date
+        </pre>
+
+				<p>
+					Такой score может использоваться как дополнительный
+					сигнал для ранжирования объектов и последующих
+					продуктовых сценариев.
+				</p>
+
+			</section>
+
+
+			<!-- TECHNOLOGY -->
+
+			<section>
+
+				<h2>Technology Stack</h2>
+
+				<div class="tech-stack">
+
+					<span>Python</span>
+					<span>CatBoost</span>
+					<span>pandas</span>
+					<span>NumPy</span>
+					<span>scikit-learn</span>
+					<span>Optuna</span>
+					<span>PostgreSQL</span>
+					<span>Apache Airflow</span>
+					<span>S3</span>
+					<span>boto3</span>
+					<span>Git</span>
+
+				</div>
+
+			</section>
+
+
+			<!-- LINKS -->
+
+			<section>
+
+				<h2>Links</h2>
+
+				<p>
+
+					<a href="https://github.com/exitazy1809/ds_portfolio/tree/main/ds_%20stay_ai" target="_blank">
+						GitHub — project source →
+					</a>
+
+				</p>
+
+				<p>
+
+					<a href="#">
+						🚀 Live Demo →
+					</a>
+
+				</p>
+
+			</section>
+
+
+	</main>
+
+
+	<footer>
+
+		<a href="../../index.html">
+			← Back to portfolio
+		</a>
+
+	</footer>
+
+</body>
+
+</html>
