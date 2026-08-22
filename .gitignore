@@ -1,19 +1,58 @@
-.DS_Store
+# ================================
+# Website source / artifacts
+# ================================
 
+*.html
+*.css
+*.js
+
+# Website images / media
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.svg
+*.ico
+
+# Website generated files
+dist/
+build/
+.cache/
+
+# ================================
 # Python
+# ================================
+
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
 
+# ================================
 # macOS
+# ================================
+
 .DS_Store
 
+# ================================
 # Environment / secrets
+# ================================
+
 .env
 *.env
 
+# ================================
 # ML artifacts
+# ================================
+
 *.pkl
 *.joblib
+*.pickle
+*.onnx
+*.h5
+*.hdf5
 
-# CatBoost training artifacts
 catboost_info/
+models/
+artifacts/
