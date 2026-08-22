@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>SmartScore — Data Science Case Study</title>
+
+	<link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+	<header>
+
+		<a class="project-back" href="../../index.html">
+			← Назад к портфолио
+		</a>
+
+		<p class="project-kicker">01 / Case Study</p>
+
+		<h1>SmartScore</h1>
+
+		<p class="project-subtitle">
+			ML-система скоринга объявлений недвижимости
+		</p>
+
+		<p class="project-description">
+			Классификация объявлений по потенциальному спросу
+			с последующим batch-инференсом и сохранением результатов
+			в production-пайплайне.
+		</p>
+
+		<div class="project-tech">
+			<span>CatBoost</span>
+			<span>LightGBM</span>
+			<span>PostgreSQL</span>
+			<span>Airflow</span>
+			<span>S3</span>
+			<span>MLOps</span>
+		</div>
+
+		<div class="system-status">
+			<div class="status-dots">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			system running slowly
+		</div>
+
+	</header>
+
+
+	<main>
+
+		<!-- RESULTS -->
+
+		<section>
+
+			<div class="metrics">
+
+				<div class="metric-card">
+					<span class="metric-label">ROC-AUC</span>
+					<span class="metric-value">0.9919</span>
+				</div>
+
+				<div class="metric-card">
+					<span class="metric-label">PR-AUC</span>
+					<span class="metric-value">0.9378</span>
+				</div>
+
+				<div class="metric-card">
+					<span class="metric-label">Recall</span>
+					<span class="metric-value">0.9796</span>
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- ABOUT -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">01</span>
+				<h2>О проекте</h2>
+			</div>
+
+			<div class="content-block">
+
+				<p>
+					SmartScore определяет объявления с высоким потенциальным
+					спросом относительно объектов в том же городе и сегменте.
+				</p>
+
+				<p>
+					Итоговый score может использоваться как дополнительный
+					сигнал для ранжирования объявлений.
+				</p>
+
+			</div>
+
+		</section>
+
+
+		<!-- DATA -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">02</span>
+				<h2>Данные</h2>
+			</div>
+
+			<div class="cards">
+
+				<article class="card yellow">
+					<h3>661K+</h3>
+					<p>объявлений в основной таблице.</p>
+				</article>
+
+				<article class="card">
+					<h3>10</h3>
+					<p>городов представлены в данных.</p>
+				</article>
+
+				<article class="card blue">
+					<h3>64</h3>
+					<p>исходных признака listings.</p>
+				</article>
+
+			</div>
+
+			<div class="content-block" style="margin-top: 16px;">
+
+				<p>
+					Использовались данные listings, calendar и reviews.
+					В данных присутствуют характеристики объектов, хозяев,
+					цены, рейтинги, доступность и история отзывов.
+				</p>
+
+			</div>
+
+		</section>
+
+
+		<!-- TARGET -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">03</span>
+				<h2>Target Engineering</h2>
+			</div>
+
+			<div class="cards">
+
+				<article class="card">
+					<h3>Сегментация</h3>
+					<p>
+						Расчёт выполнялся отдельно для комбинации
+						<strong>город + тип жилья</strong>.
+					</p>
+				</article>
+
+				<article class="card">
+					<h3>Медианы</h3>
+					<p>
+						Для сегментов рассчитывались медианы отзывов,
+						цены и рейтинга.
+					</p>
+				</article>
+
+				<article class="card accent">
+					<h3>High Demand</h3>
+					<p>
+						Объект относился к целевому классу при выполнении
+						всех заданных условий относительно медиан сегмента.
+					</p>
+				</article>
+
+			</div>
+
+			<div class="content-block" style="margin-top: 16px;">
+
+				<p>
+					Признаки, участвующие в формировании target или содержащие
+					потенциальную информацию о будущем спросе, исключались
+					из модели для снижения риска data leakage.
+				</p>
+
+			</div>
+
+		</section>
+
+
+		<!-- FEATURES -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">04</span>
+				<h2>Feature Engineering</h2>
+			</div>
+
+			<div class="tags">
+
+				<span>price_per_person</span>
+				<span>avg_stay_nights</span>
+				<span>stay_ratio</span>
+				<span>host_age_days</span>
+				<span>host_quality_score</span>
+				<span>name_length</span>
+				<span>name_word_count</span>
+				<span>desc_length</span>
+				<span>amenities_count</span>
+				<span>bathrooms_per_guest</span>
+				<span>beds_per_guest</span>
+
+			</div>
+
+			<div class="cards" style="margin-top: 16px;">
+
+				<article class="card">
+					<h3>Категории</h3>
+					<p>
+						CatBoost обрабатывает категориальные признаки
+						без One-Hot Encoding.
+					</p>
+				</article>
+
+				<article class="card">
+					<h3>Текст</h3>
+					<p>
+						Текстовые поля очищались и передавались
+						в CatBoost для внутреннего преобразования.
+					</p>
+				</article>
+
+				<article class="card">
+					<h3>Бизнес-признаки</h3>
+					<p>
+						Созданы признаки цены, длительности проживания,
+						качества объявления и характеристик хозяина.
+					</p>
+				</article>
+
+			</div>
+
+		</section>
+
+
+		<!-- MODEL -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">05</span>
+				<h2>Model Development</h2>
+			</div>
+
+			<div class="table-wrap">
+
+				<table>
+
+					<thead>
+						<tr>
+							<th>Model</th>
+							<th>ROC-AUC</th>
+							<th>PR-AUC</th>
+							<th>F1</th>
+							<th>Recall</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+						<tr>
+							<td>Logistic Regression</td>
+							<td>0.9262</td>
+							<td>0.6229</td>
+							<td>0.5812</td>
+							<td>0.8514</td>
+						</tr>
+
+						<tr class="best-row">
+							<td>CatBoost</td>
+							<td>0.9919</td>
+							<td>0.9378</td>
+							<td>0.8223</td>
+							<td>0.9796</td>
+						</tr>
+
+						<tr>
+							<td>LightGBM</td>
+							<td>0.9684</td>
+							<td>0.8130</td>
+							<td>0.6768</td>
+							<td>0.9345</td>
+						</tr>
+
+						<tr>
+							<td>XGBoost</td>
+							<td>0.9655</td>
+							<td>0.7998</td>
+							<td>0.6485</td>
+							<td>0.9454</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
+			<div class="cards" style="margin-top: 16px;">
+
+				<article class="card yellow">
+					<h3>CatBoost</h3>
+					<p>
+						Финальная модель с лучшими показателями
+						по основным метрикам.
+					</p>
+				</article>
+
+				<article class="card">
+					<h3>PR-AUC</h3>
+					<p>
+						Основная метрика выбора модели из-за
+						дисбаланса классов.
+					</p>
+				</article>
+
+				<article class="card blue">
+					<h3>Optuna</h3>
+					<p>
+						Использовалась для автоматического подбора
+						гиперпараметров.
+					</p>
+				</article>
+
+			</div>
+
+		</section>
+
+
+		<!-- OPTUNA -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">06</span>
+				<h2>Hyperparameter Optimization</h2>
+			</div>
+
+			<div class="content-block">
+
+				<pre>
+iterations: 984
+learning_rate: 0.09884
+depth: 10
+l2_leaf_reg: 7.4489
+random_strength: 2.2944
+bagging_temperature: 0.6931
+</pre>
+
+			</div>
+
+		</section>
+
+
+		<!-- EVALUATION -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">07</span>
+				<h2>Evaluation</h2>
+			</div>
+
+			<div class="cards">
+
+				<article class="card yellow">
+					<h3>Recall</h3>
+					<p>
+						<strong>0.9796</strong>
+					</p>
+					<p>
+						Большая часть объектов целевого класса
+						обнаруживается моделью.
+					</p>
+				</article>
+
+				<article class="card blue">
+					<h3>PR-AUC</h3>
+					<p>
+						<strong>0.9378</strong>
+					</p>
+					<p>
+						Высокое качество ранжирования положительного
+						класса при дисбалансе.
+					</p>
+				</article>
+
+			</div>
+
+		</section>
+
+
+		<!-- PRODUCTION -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">08</span>
+				<h2>Production Architecture</h2>
+			</div>
+
+			<div class="content-block">
+
+				<p>
+					Batch inference запускается через Apache Airflow.
+					Данные поступают из PostgreSQL, модель и артефакты
+					хранятся в S3, а результаты возвращаются в PostgreSQL.
+				</p>
+
+			</div>
+
+			<div class="architecture">
+
+				<div class="architecture-column">
+					<div class="architecture-box">
+						<strong>PostgreSQL</strong>
+						<span>Input data</span>
+					</div>
+				</div>
+
+				<div class="architecture-column">
+					<div class="architecture-box">
+						<strong>Airflow</strong>
+						<span>Orchestration</span>
+					</div>
+				</div>
+
+				<div class="architecture-column">
+					<div class="architecture-box">
+						<strong>S3</strong>
+						<span>Model + artifacts</span>
+					</div>
+				</div>
+
+				<div class="architecture-column">
+					<div class="architecture-box">
+						<strong>Predictions</strong>
+						<span>PostgreSQL</span>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- MLOPS -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">09</span>
+				<h2>MLOps Pipeline</h2>
+			</div>
+
+			<div class="pipeline">
+
+				<div class="pipeline-step">
+					<span>01</span>
+					<strong>check_s3</strong>
+					<small>Проверка артефактов</small>
+				</div>
+
+				<div class="pipeline-step">
+					<span>02</span>
+					<strong>load_data</strong>
+					<small>Загрузка данных</small>
+				</div>
+
+				<div class="pipeline-step">
+					<span>03</span>
+					<strong>preprocess</strong>
+					<small>Подготовка признаков</small>
+				</div>
+
+				<div class="pipeline-step">
+					<span>04</span>
+					<strong>predict</strong>
+					<small>Batch inference</small>
+				</div>
+
+				<div class="pipeline-step">
+					<span>05</span>
+					<strong>save_results</strong>
+					<small>Запись результатов</small>
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- RESULT -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">10</span>
+				<h2>Result</h2>
+			</div>
+
+			<div class="content-block">
+
+				<p>
+					Для каждого объявления формируется числовой SmartScore,
+					который сохраняется вместе с идентификатором объекта
+					и датой инференса.
+				</p>
+
+				<pre>
+listing_id
+score
+inference_date
+</pre>
+
+				<p>
+					Score может использоваться как дополнительный сигнал
+					для ранжирования объявлений.
+				</p>
+
+			</div>
+
+		</section>
+
+
+		<!-- STACK -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">11</span>
+				<h2>Technology Stack</h2>
+			</div>
+
+			<div class="tags">
+
+				<span>Python</span>
+				<span>CatBoost</span>
+				<span>Pandas</span>
+				<span>NumPy</span>
+				<span>Scikit-learn</span>
+				<span>Optuna</span>
+				<span>PostgreSQL</span>
+				<span>Apache Airflow</span>
+				<span>S3</span>
+				<span>boto3</span>
+				<span>Git</span>
+
+			</div>
+
+		</section>
+
+
+		<!-- LINKS -->
+
+		<section>
+
+			<div class="section-heading">
+				<span class="section-number">12</span>
+				<h2>Project</h2>
+			</div>
+
+			<div class="project-links">
+
+				<a class="project-button" href="https://github.com/exitazy1809/ds_portfolio/tree/main/ds_%20stay_ai"
+					target="_blank">
+					GitHub →
+				</a>
+
+				<a class="project-button secondary" href="../../index.html">
+					← Портфолио
+				</a>
+
+			</div>
+
+		</section>
+
+	</main>
+
+
+	<footer>
+
+		<div class="footer-inner">
+
+			<div>
+				<strong>Dmitriy Karakcheev</strong>
+				<span>Data Scientist / ML Engineer</span>
+			</div>
+
+			<a href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
+				GitHub ↗
+			</a>
+
+		</div>
+
+	</footer>
+
+</body>
+
+</html>
