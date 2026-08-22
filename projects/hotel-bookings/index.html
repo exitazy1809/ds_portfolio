@@ -25,7 +25,7 @@
         </p>
 
         <p>
-            Classification · NLP · CatBoost · SHAP · Optuna
+            CatBoost · XGBoost · LightGBM · NLP · SHAP · Optuna
         </p>
 
     </header>
@@ -33,9 +33,28 @@
 
     <main>
 
-        <!-- HERO -->
+        <section>
+
+            <h2>О проекте</h2>
+
+            <p>
+                ML-модель для прогнозирования вероятности отмены
+                бронирования с использованием характеристик брони
+                и текстовой информации из отзывов клиентов.
+            </p>
+
+            <p>
+                Основная бизнес-цель — заранее выявлять рискованные
+                бронирования и оценивать потенциальный revenue uplift
+                от целевых интервенций.
+            </p>
+
+        </section>
+
 
         <section>
+
+            <h2>Данные</h2>
 
             <div class="metrics">
 
@@ -56,54 +75,6 @@
 
             </div>
 
-        </section>
-
-
-        <!-- ABOUT -->
-
-        <section>
-
-            <h2>01 — О проекте</h2>
-
-            <p>
-                ML-модель для прогнозирования вероятности отмены бронирования
-                с использованием характеристик брони и текстовой информации
-                из отзывов клиентов.
-            </p>
-
-            <p>
-                Основная бизнес-цель — заранее выявлять рискованные бронирования
-                и оценивать потенциальный revenue uplift от целевых интервенций.
-            </p>
-
-        </section>
-
-
-        <!-- DATA -->
-
-        <section>
-
-            <h2>02 — Data</h2>
-
-            <div class="metrics">
-
-                <div>
-                    <strong>Bookings</strong>
-                    <span>30 733</span>
-                </div>
-
-                <div>
-                    <strong>Features</strong>
-                    <span>526</span>
-                </div>
-
-                <div>
-                    <strong>TF-IDF Features</strong>
-                    <span>500</span>
-                </div>
-
-            </div>
-
             <p>
                 Около 27% бронирований содержали доступный текстовый отзыв.
                 Текстовые данные были преобразованы в TF-IDF представление
@@ -113,43 +84,20 @@
         </section>
 
 
-        <!-- FEATURE ENGINEERING -->
-
         <section>
 
-            <h2>03 — Feature Engineering</h2>
+            <h2>Feature Engineering</h2>
 
             <p>
                 Были созданы бизнес-интерпретируемые признаки:
             </p>
 
             <ul>
-
-                <li>
-                    <code>total_guests</code> —
-                    общее количество гостей;
-                </li>
-
-                <li>
-                    <code>stay_nights</code> —
-                    продолжительность проживания;
-                </li>
-
-                <li>
-                    <code>price_per_night</code> —
-                    стоимость одной ночи;
-                </li>
-
-                <li>
-                    <code>is_last_minute</code> —
-                    бронирование менее чем за 3 дня до заезда;
-                </li>
-
-                <li>
-                    <code>has_special_requests</code> —
-                    наличие специальных запросов.
-                </li>
-
+                <li><code>total_guests</code> — общее количество гостей;</li>
+                <li><code>stay_nights</code> — продолжительность проживания;</li>
+                <li><code>price_per_night</code> — стоимость одной ночи;</li>
+                <li><code>is_last_minute</code> — бронирование менее чем за 3 дня;</li>
+                <li><code>has_special_requests</code> — наличие специальных запросов.</li>
             </ul>
 
             <p>
@@ -160,21 +108,35 @@
         </section>
 
 
-        <!-- MODELING -->
-
         <section>
 
-            <h2>04 — Model Development</h2>
+            <h2>Моделирование</h2>
 
-            <p>
-                Были сравнены три алгоритма градиентного бустинга:
-            </p>
+            <div class="projects">
 
-            <div class="tech-stack">
+                <article class="project-card">
+                    <h3>CatBoost</h3>
+                    <p>
+                        Градиентный бустинг с поддержкой
+                        категориальных признаков.
+                    </p>
+                </article>
 
-                <span>CatBoost</span>
-                <span>LightGBM</span>
-                <span>XGBoost</span>
+                <article class="project-card">
+                    <h3>LightGBM</h3>
+                    <p>
+                        Альтернативная модель для сравнения
+                        качества классификации.
+                    </p>
+                </article>
+
+                <article class="project-card">
+                    <h3>XGBoost</h3>
+                    <p>
+                        Дополнительный baseline
+                        для сравнения алгоритмов.
+                    </p>
+                </article>
 
             </div>
 
@@ -187,17 +149,15 @@
             <p>
                 Вероятности модели дополнительно калибровались,
                 после чего подбирался оптимальный порог классификации
-                непосредственно по бизнес-метрике Incremental Revenue.
+                по бизнес-метрике Incremental Revenue.
             </p>
 
         </section>
 
 
-        <!-- FINAL MODEL -->
-
         <section>
 
-            <h2>05 — Final Model</h2>
+            <h2>Итоговая модель</h2>
 
             <div class="metrics">
 
@@ -218,45 +178,36 @@
 
             </div>
 
-            <div class="project-card">
+            <p>
+                Финальная модель:
+                <code>CatBoost + Isotonic Calibration</code>.
+            </p>
 
-                <h3>CatBoost + Isotonic Calibration</h3>
-
-                <ul>
-
-                    <li>depth = 4</li>
-
-                    <li>learning_rate ≈ 0.196</li>
-
-                    <li>iterations = 480</li>
-
-                    <li>l2_leaf_reg ≈ 7.25</li>
-
-                    <li>optimal threshold = 0.533</li>
-
-                </ul>
-
-            </div>
+            <ul>
+                <li>depth = 4</li>
+                <li>learning_rate ≈ 0.196</li>
+                <li>iterations = 480</li>
+                <li>l2_leaf_reg ≈ 7.25</li>
+                <li>optimal threshold = 0.533</li>
+            </ul>
 
         </section>
 
 
-        <!-- BUSINESS RESULT -->
-
         <section>
 
-            <h2>06 — Business Result</h2>
+            <h2>Бизнес-результат</h2>
 
             <div class="metrics">
 
                 <div>
-                    <strong>Calibration IR</strong>
-                    <span>215.4M ₽</span>
+                    <strong>Calibration</strong>
+                    <span>215.4 млн ₽</span>
                 </div>
 
                 <div>
-                    <strong>Test IR</strong>
-                    <span>214.5M ₽</span>
+                    <strong>Test</strong>
+                    <span>214.5 млн ₽</span>
                 </div>
 
                 <div>
@@ -275,37 +226,33 @@
         </section>
 
 
-        <!-- INTERPRETATION -->
-
         <section>
 
-            <h2>07 — Model Interpretation</h2>
+            <h2>Интерпретация модели</h2>
 
             <p>
-                SHAP-анализ показал значительный вклад текстовых TF-IDF
-                признаков в прогнозирование отмен.
+                SHAP-анализ показал значительный вклад текстовых
+                TF-IDF признаков в прогнозирование отмен.
             </p>
 
             <p>
-                Среди табличных признаков наиболее заметны продолжительность
-                проживания, количество гостей, стоимость проживания
-                и наличие специальных запросов.
+                Среди табличных признаков наиболее заметны
+                продолжительность проживания, количество гостей,
+                стоимость проживания и наличие специальных запросов.
             </p>
 
             <p>
-                Это показывает, что сочетание классических табличных признаков
-                и NLP позволяет учитывать как характеристики бронирования,
+                Сочетание классических табличных признаков и NLP
+                позволяет учитывать как характеристики бронирования,
                 так и текстовую историю взаимодействия клиента.
             </p>
 
         </section>
 
 
-        <!-- PIPELINE -->
-
         <section>
 
-            <h2>08 — ML Pipeline</h2>
+            <h2>Pipeline</h2>
 
             <div class="pipeline">
 
@@ -327,7 +274,7 @@
                 <div>Calibration</div>
                 <span>→</span>
 
-                <div>Threshold Optimization</div>
+                <div>Threshold</div>
                 <span>→</span>
 
                 <div>SHAP</div>
@@ -340,37 +287,9 @@
         </section>
 
 
-        <!-- BUSINESS LOGIC -->
-
         <section>
 
-            <h2>09 — Business Evaluation</h2>
-
-            <div class="project-card">
-
-                <p>
-                    Оптимальный threshold выбирался не только
-                    по стандартным classification metrics,
-                    а непосредственно по Incremental Revenue.
-                </p>
-
-                <p>
-                    Такой подход позволяет связать ML-модель
-                    непосредственно с бизнес-эффектом и определить,
-                    какие бронирования целесообразно рассматривать
-                    для дальнейших интервенций.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- STACK -->
-
-        <section>
-
-            <h2>10 — Tech Stack</h2>
+            <h2>Стек</h2>
 
             <div class="tech-stack">
 
@@ -390,34 +309,14 @@
         </section>
 
 
-        <!-- RESULT -->
-
         <section>
 
-            <h2>11 — Result</h2>
+            <h2>Результат</h2>
 
             <p>
                 В результате построен полный ML-пайплайн прогнозирования
-                отмен бронирований: от подготовки данных и генерации
-                признаков до калибровки, оптимизации порога и оценки
-                бизнес-эффекта.
-            </p>
-
-        </section>
-
-
-        <!-- LINKS -->
-
-        <section>
-
-            <h2>Links</h2>
-
-            <p>
-
-                <a href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
-                    GitHub — project source →
-                </a>
-
+                отмен: от подготовки данных и генерации признаков
+                до калибровки, оптимизации порога и оценки бизнес-эффекта.
             </p>
 
         </section>
@@ -429,6 +328,12 @@
 
         <a href="../../index.html">
             ← Назад к портфолио
+        </a>
+
+        <span> · </span>
+
+        <a href="https://github.com/exitazy1809/ds_portfolio" target="_blank">
+            GitHub
         </a>
 
     </footer>

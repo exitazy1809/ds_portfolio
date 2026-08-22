@@ -33,8 +33,6 @@
 
 	<main>
 
-		<!-- HERO -->
-
 		<section>
 
 			<div class="metrics">
@@ -59,8 +57,6 @@
 		</section>
 
 
-		<!-- BUSINESS PROBLEM -->
-
 		<section>
 
 			<h2>01 — Business Problem</h2>
@@ -72,21 +68,18 @@
 			</p>
 
 			<p>
-				SmartScore должен использоваться как дополнительный
-				сигнал для ранжирования объявлений и помогать
-				улучшать качество выдачи.
+				SmartScore используется как дополнительный сигнал
+				для ранжирования объявлений и улучшения качества выдачи.
 			</p>
 
 			<p>
 				Бизнес-цель — повысить релевантность выдачи,
 				улучшить пользовательский опыт и снизить долю
-				неактивных или нерелевантных объявлений.
+				нерелевантных объявлений.
 			</p>
 
 		</section>
 
-
-		<!-- DATA -->
 
 		<section>
 
@@ -112,20 +105,17 @@
 			</div>
 
 			<p>
-				Основная таблица listings содержит характеристики
-				объектов, параметры хозяев, цены, рейтинги,
-				доступность и информацию об отзывах.
+				Основная таблица содержит характеристики объектов,
+				параметры хозяев, цены, рейтинги, доступность
+				и информацию об отзывах.
 			</p>
 
 			<p>
-				Дополнительно использовались данные calendar
-				и reviews.
+				Дополнительно использовались данные calendar и reviews.
 			</p>
 
 		</section>
 
-
-		<!-- TARGET -->
 
 		<section>
 
@@ -153,23 +143,20 @@
 			</ul>
 
 			<p>
-				Признаки, участвующие в формировании target, а также
-				потенциально содержащие информацию о будущем спросе,
+				Признаки, участвующие в формировании target,
 				исключались из модели для снижения риска data leakage.
 			</p>
 
 		</section>
 
 
-		<!-- FEATURE ENGINEERING -->
-
 		<section>
 
 			<h2>04 — Feature Engineering</h2>
 
 			<p>
-				Для модели были сформированы дополнительные признаки,
-				описывающие характеристики объекта и владельца.
+				Были сформированы дополнительные признаки,
+				описывающие объект и владельца.
 			</p>
 
 			<div class="tech-stack">
@@ -189,19 +176,12 @@
 			</div>
 
 			<p>
-				Для категориальных признаков использовалась встроенная
-				обработка CatBoost без One-Hot Encoding.
-			</p>
-
-			<p>
-				Текстовые поля очищались и передавались в CatBoost
-				для внутреннего преобразования.
+				Для категориальных признаков использовалась
+				встроенная обработка CatBoost без One-Hot Encoding.
 			</p>
 
 		</section>
 
-
-		<!-- MODELING -->
 
 		<section>
 
@@ -277,62 +257,43 @@
 			<div class="chart">
 
 				<div class="chart-row">
-
-					<span class="chart-label">
-						Logistic Regression
-					</span>
+					<span class="chart-label">Logistic Regression</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 92.62%;">
 							0.9262
 						</div>
 					</div>
-
 				</div>
 
-
 				<div class="chart-row">
-
-					<span class="chart-label">
-						CatBoost
-					</span>
+					<span class="chart-label">CatBoost</span>
 
 					<div class="bar-container">
 						<div class="bar best" style="width: 99.19%;">
 							0.9919
 						</div>
 					</div>
-
 				</div>
 
-
 				<div class="chart-row">
-
-					<span class="chart-label">
-						LightGBM
-					</span>
+					<span class="chart-label">LightGBM</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 96.84%;">
 							0.9684
 						</div>
 					</div>
-
 				</div>
 
-
 				<div class="chart-row">
-
-					<span class="chart-label">
-						XGBoost
-					</span>
+					<span class="chart-label">XGBoost</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 96.55%;">
 							0.9655
 						</div>
 					</div>
-
 				</div>
 
 			</div>
@@ -343,70 +304,47 @@
 			<div class="chart">
 
 				<div class="chart-row">
-
-					<span class="chart-label">
-						Logistic Regression
-					</span>
+					<span class="chart-label">Logistic Regression</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 62.29%;">
 							0.6229
 						</div>
 					</div>
-
 				</div>
 
-
 				<div class="chart-row">
-
-					<span class="chart-label">
-						CatBoost
-					</span>
+					<span class="chart-label">CatBoost</span>
 
 					<div class="bar-container">
 						<div class="bar best" style="width: 93.78%;">
 							0.9378
 						</div>
 					</div>
-
 				</div>
 
-
 				<div class="chart-row">
+					<span class="chart-label">LightGBM</span>
 
-					<span class="chart-label">
-						LightGBM
-					</span>
-
-					<div class="bar-container">
-						<div class="bar" style="width: 81.30%;">
-							0.8130
-						</div>
+					<div class="bar" style="width: 81.30%;">
+						0.8130
 					</div>
-
 				</div>
 
-
 				<div class="chart-row">
-
-					<span class="chart-label">
-						XGBoost
-					</span>
+					<span class="chart-label">XGBoost</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 79.98%;">
 							0.7998
 						</div>
 					</div>
-
 				</div>
 
 			</div>
 
 		</section>
 
-
-		<!-- OPTUNA -->
 
 		<section>
 
@@ -434,8 +372,6 @@ bagging_temperature: 0.6931
 		</section>
 
 
-		<!-- EVALUATION -->
-
 		<section>
 
 			<h2>07 — Evaluation</h2>
@@ -443,18 +379,16 @@ bagging_temperature: 0.6931
 			<p>
 				Финальная модель показывает высокий Recall —
 				<strong>0.9796</strong>, то есть обнаруживает
-				большую часть объявлений, относящихся к целевому классу.
+				большую часть объявлений целевого класса.
 			</p>
 
 			<p>
-				При этом PR-AUC составляет <strong>0.9378</strong>,
-				что является особенно важной метрикой при дисбалансе классов.
+				PR-AUC составляет <strong>0.9378</strong>,
+				что особенно важно при дисбалансе классов.
 			</p>
 
 		</section>
 
-
-		<!-- PRODUCTION ARCHITECTURE -->
 
 		<section>
 
@@ -462,8 +396,8 @@ bagging_temperature: 0.6931
 
 			<p>
 				Batch inference запускается через Apache Airflow.
-				Данные и ML-артефакты хранятся отдельно, а результат
-				расчёта возвращается в PostgreSQL.
+				Данные и ML-артефакты хранятся отдельно,
+				а результат расчёта возвращается в PostgreSQL.
 			</p>
 
 			<div class="architecture">
@@ -559,41 +493,20 @@ save_results
 		</section>
 
 
-		<!-- MLOPS -->
-
 		<section>
 
 			<h2>09 — MLOps</h2>
 
 			<ul>
-
-				<li>
-					Apache Airflow используется для оркестрации batch inference.
-				</li>
-
-				<li>
-					ML-модель и preprocessing сохраняются в S3.
-				</li>
-
-				<li>
-					Данные загружаются из PostgreSQL.
-				</li>
-
-				<li>
-					Результаты инференса сохраняются обратно в PostgreSQL.
-				</li>
-
-				<li>
-					Pipeline поддерживает повторный запуск
-					без дублирования результатов за одну дату.
-				</li>
-
+				<li>Apache Airflow используется для оркестрации batch inference.</li>
+				<li>ML-модель и preprocessing сохраняются в S3.</li>
+				<li>Данные загружаются из PostgreSQL.</li>
+				<li>Результаты инференса сохраняются обратно в PostgreSQL.</li>
+				<li>Pipeline поддерживает повторный запуск без дублирования результатов.</li>
 			</ul>
 
 		</section>
 
-
-		<!-- RESULT -->
 
 		<section>
 
@@ -604,11 +517,6 @@ save_results
 				SmartScore для каждого объявления.
 			</p>
 
-			<p>
-				Score сохраняется вместе с идентификатором объекта
-				и датой инференса:
-			</p>
-
 			<pre>
 listing_id
 score
@@ -616,15 +524,13 @@ inference_date
         </pre>
 
 			<p>
-				Такой score может использоваться как дополнительный
+				Score может использоваться как дополнительный
 				сигнал для ранжирования объектов и последующих
 				продуктовых сценариев.
 			</p>
 
 		</section>
 
-
-		<!-- TECHNOLOGY -->
 
 		<section>
 
@@ -648,8 +554,6 @@ inference_date
 
 		</section>
 
-
-		<!-- LINKS -->
 
 		<section>
 
