@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>SmartScore — Data Science Project</title>
+	<title>SmartScore — Data Science Case Study</title>
 
 	<link rel="stylesheet" href="../../style.css">
 </head>
@@ -15,7 +15,7 @@
 	<header>
 
 		<a href="../../index.html">
-			← Back to portfolio
+			← Назад к портфолио
 		</a>
 
 		<h1>SmartScore</h1>
@@ -147,19 +147,9 @@
 			</p>
 
 			<ul>
-
-				<li>
-					количество отзывов выше медианы сегмента;
-				</li>
-
-				<li>
-					цена не ниже медианной;
-				</li>
-
-				<li>
-					рейтинг не ниже медианного.
-				</li>
-
+				<li>количество отзывов выше медианы сегмента;</li>
+				<li>цена не ниже медианной;</li>
+				<li>рейтинг не ниже медианного.</li>
 			</ul>
 
 			<p>
@@ -227,7 +217,6 @@
 				<table>
 
 					<thead>
-
 						<tr>
 							<th>Model</th>
 							<th>ROC-AUC</th>
@@ -235,7 +224,6 @@
 							<th>F1</th>
 							<th>Recall</th>
 						</tr>
-
 					</thead>
 
 					<tbody>
@@ -282,102 +270,139 @@
 				CatBoost показал лучший результат по основным метрикам
 				и был выбран в качестве финальной модели.
 			</p>
+
+
 			<h3>ROC-AUC comparison</h3>
 
 			<div class="chart">
 
 				<div class="chart-row">
-					<span class="chart-label">Logistic Regression</span>
+
+					<span class="chart-label">
+						Logistic Regression
+					</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 92.62%;">
 							0.9262
 						</div>
 					</div>
+
 				</div>
 
 
 				<div class="chart-row">
-					<span class="chart-label">CatBoost</span>
+
+					<span class="chart-label">
+						CatBoost
+					</span>
 
 					<div class="bar-container">
 						<div class="bar best" style="width: 99.19%;">
 							0.9919
 						</div>
 					</div>
+
 				</div>
 
 
 				<div class="chart-row">
-					<span class="chart-label">LightGBM</span>
+
+					<span class="chart-label">
+						LightGBM
+					</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 96.84%;">
 							0.9684
 						</div>
 					</div>
+
 				</div>
 
 
 				<div class="chart-row">
-					<span class="chart-label">XGBoost</span>
+
+					<span class="chart-label">
+						XGBoost
+					</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 96.55%;">
 							0.9655
 						</div>
 					</div>
+
 				</div>
 
 			</div>
+
+
 			<h3>PR-AUC comparison</h3>
 
 			<div class="chart">
 
 				<div class="chart-row">
-					<span class="chart-label">Logistic Regression</span>
+
+					<span class="chart-label">
+						Logistic Regression
+					</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 62.29%;">
 							0.6229
 						</div>
 					</div>
+
 				</div>
 
 
 				<div class="chart-row">
-					<span class="chart-label">CatBoost</span>
+
+					<span class="chart-label">
+						CatBoost
+					</span>
 
 					<div class="bar-container">
 						<div class="bar best" style="width: 93.78%;">
 							0.9378
 						</div>
 					</div>
+
 				</div>
 
 
 				<div class="chart-row">
-					<span class="chart-label">LightGBM</span>
+
+					<span class="chart-label">
+						LightGBM
+					</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 81.30%;">
 							0.8130
 						</div>
 					</div>
+
 				</div>
 
 
 				<div class="chart-row">
-					<span class="chart-label">XGBoost</span>
+
+					<span class="chart-label">
+						XGBoost
+					</span>
 
 					<div class="bar-container">
 						<div class="bar" style="width: 79.98%;">
 							0.7998
 						</div>
 					</div>
+
 				</div>
 
 			</div>
+
 		</section>
 
 
@@ -429,105 +454,93 @@ bagging_temperature: 0.6931
 		</section>
 
 
-		<!-- PRODUCTION -->
+		<!-- PRODUCTION ARCHITECTURE -->
 
 		<section>
 
-			<!-- PRODUCTION -->
+			<h2>08 — Production Architecture</h2>
 
-			<section>
+			<p>
+				Batch inference запускается через Apache Airflow.
+				Данные и ML-артефакты хранятся отдельно, а результат
+				расчёта возвращается в PostgreSQL.
+			</p>
 
-				<h2>08 — Production Architecture</h2>
+			<div class="architecture">
 
-				<p>
-					Batch inference запускается через Apache Airflow.
-					Данные и ML-артефакты хранятся отдельно, а результат
-					расчёта возвращается в PostgreSQL.
-				</p>
+				<div class="architecture-column">
 
-				<div class="architecture">
-
-					<div class="architecture-column">
-
-						<div class="architecture-box database">
-							<strong>PostgreSQL</strong>
-							<span>Input data</span>
-						</div>
-
-						<div class="architecture-arrow">
-							↓
-						</div>
-
-						<div class="architecture-box airflow">
-							<strong>Apache Airflow</strong>
-							<span>Orchestration</span>
-						</div>
-
+					<div class="architecture-box database">
+						<strong>PostgreSQL</strong>
+						<span>Input data</span>
 					</div>
 
+					<div class="architecture-arrow">↓</div>
 
-					<div class="architecture-column">
-
-						<div class="architecture-box">
-							<strong>Preprocessing</strong>
-							<span>Data cleaning</span>
-						</div>
-
-						<div class="architecture-arrow">
-							↓
-						</div>
-
-						<div class="architecture-box">
-							<strong>Feature Engineering</strong>
-							<span>Feature generation</span>
-						</div>
-
-					</div>
-
-
-					<div class="architecture-column">
-
-						<div class="architecture-box s3">
-							<strong>S3</strong>
-							<span>Model + artifacts</span>
-						</div>
-
-						<div class="architecture-arrow">
-							↓
-						</div>
-
-						<div class="architecture-box model">
-							<strong>CatBoost</strong>
-							<span>Inference</span>
-						</div>
-
-					</div>
-
-
-					<div class="architecture-column">
-
-						<div class="architecture-box">
-							<strong>Predictions</strong>
-							<span>SmartScore</span>
-						</div>
-
-						<div class="architecture-arrow">
-							↓
-						</div>
-
-						<div class="architecture-box database">
-							<strong>PostgreSQL</strong>
-							<span>Output table</span>
-						</div>
-
+					<div class="architecture-box airflow">
+						<strong>Apache Airflow</strong>
+						<span>Orchestration</span>
 					</div>
 
 				</div>
 
 
-				<h3>Airflow DAG</h3>
+				<div class="architecture-column">
 
-				<pre>
+					<div class="architecture-box">
+						<strong>Preprocessing</strong>
+						<span>Data cleaning</span>
+					</div>
+
+					<div class="architecture-arrow">↓</div>
+
+					<div class="architecture-box">
+						<strong>Feature Engineering</strong>
+						<span>Feature generation</span>
+					</div>
+
+				</div>
+
+
+				<div class="architecture-column">
+
+					<div class="architecture-box s3">
+						<strong>S3</strong>
+						<span>Model + artifacts</span>
+					</div>
+
+					<div class="architecture-arrow">↓</div>
+
+					<div class="architecture-box model">
+						<strong>CatBoost</strong>
+						<span>Inference</span>
+					</div>
+
+				</div>
+
+
+				<div class="architecture-column">
+
+					<div class="architecture-box">
+						<strong>Predictions</strong>
+						<span>SmartScore</span>
+					</div>
+
+					<div class="architecture-arrow">↓</div>
+
+					<div class="architecture-box database">
+						<strong>PostgreSQL</strong>
+						<span>Output table</span>
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<h3>Airflow DAG</h3>
+
+			<pre>
 check_s3
     ↓
 load_data
@@ -540,144 +553,115 @@ preprocess
     ↓
 predict
     ↓
-save_results
-    </pre>
-
-			</section>
-
-
-			<!-- MLOPS -->
-
-			<section>
-
-				<h2>09 — MLOps</h2>
-
-				<ul>
-
-					<li>
-						Apache Airflow используется для оркестрации batch inference.
-					</li>
-
-					<li>
-						ML-модель и preprocessing сохраняются в S3.
-					</li>
-
-					<li>
-						Данные загружаются из PostgreSQL.
-					</li>
-
-					<li>
-						Результаты инференса сохраняются обратно в PostgreSQL.
-					</li>
-
-					<li>
-						Pipeline поддерживает повторный запуск
-						без дублирования результатов за одну дату.
-					</li>
-
-				</ul>
-
-				<h3>DAG</h3>
-
-				<pre>
-check_s3
-   ↓
-load_data
-   ↓
-get_inference_date
-   ↓
-load_model
-   ↓
-preprocess
-   ↓
-predict
-   ↓
 save_results
         </pre>
 
-			</section>
+		</section>
 
 
-			<!-- RESULT -->
+		<!-- MLOPS -->
 
-			<section>
+		<section>
 
-				<h2>10 — Result</h2>
+			<h2>09 — MLOps</h2>
 
-				<p>
-					Результатом работы системы является числовой
-					SmartScore для каждого объявления.
-				</p>
+			<ul>
 
-				<p>
-					Score сохраняется вместе с идентификатором объекта
-					и датой инференса:
-				</p>
+				<li>
+					Apache Airflow используется для оркестрации batch inference.
+				</li>
 
-				<pre>
+				<li>
+					ML-модель и preprocessing сохраняются в S3.
+				</li>
+
+				<li>
+					Данные загружаются из PostgreSQL.
+				</li>
+
+				<li>
+					Результаты инференса сохраняются обратно в PostgreSQL.
+				</li>
+
+				<li>
+					Pipeline поддерживает повторный запуск
+					без дублирования результатов за одну дату.
+				</li>
+
+			</ul>
+
+		</section>
+
+
+		<!-- RESULT -->
+
+		<section>
+
+			<h2>10 — Result</h2>
+
+			<p>
+				Результатом работы системы является числовой
+				SmartScore для каждого объявления.
+			</p>
+
+			<p>
+				Score сохраняется вместе с идентификатором объекта
+				и датой инференса:
+			</p>
+
+			<pre>
 listing_id
 score
 inference_date
         </pre>
 
-				<p>
-					Такой score может использоваться как дополнительный
-					сигнал для ранжирования объектов и последующих
-					продуктовых сценариев.
-				</p>
+			<p>
+				Такой score может использоваться как дополнительный
+				сигнал для ранжирования объектов и последующих
+				продуктовых сценариев.
+			</p>
 
-			</section>
-
-
-			<!-- TECHNOLOGY -->
-
-			<section>
-
-				<h2>Technology Stack</h2>
-
-				<div class="tech-stack">
-
-					<span>Python</span>
-					<span>CatBoost</span>
-					<span>pandas</span>
-					<span>NumPy</span>
-					<span>scikit-learn</span>
-					<span>Optuna</span>
-					<span>PostgreSQL</span>
-					<span>Apache Airflow</span>
-					<span>S3</span>
-					<span>boto3</span>
-					<span>Git</span>
-
-				</div>
-
-			</section>
+		</section>
 
 
-			<!-- LINKS -->
+		<!-- TECHNOLOGY -->
 
-			<section>
+		<section>
 
-				<h2>Links</h2>
+			<h2>Technology Stack</h2>
 
-				<p>
+			<div class="tech-stack">
 
-					<a href="https://github.com/exitazy1809/ds_portfolio/tree/main/ds_%20stay_ai" target="_blank">
-						GitHub — project source →
-					</a>
+				<span>Python</span>
+				<span>CatBoost</span>
+				<span>pandas</span>
+				<span>NumPy</span>
+				<span>scikit-learn</span>
+				<span>Optuna</span>
+				<span>PostgreSQL</span>
+				<span>Apache Airflow</span>
+				<span>S3</span>
+				<span>boto3</span>
+				<span>Git</span>
 
-				</p>
+			</div>
 
-				<p>
+		</section>
 
-					<a href="#">
-						🚀 Live Demo →
-					</a>
 
-				</p>
+		<!-- LINKS -->
 
-			</section>
+		<section>
 
+			<h2>Links</h2>
+
+			<p>
+				<a href="https://github.com/exitazy1809/ds_portfolio/tree/main/ds_%20stay_ai" target="_blank">
+					GitHub — project source →
+				</a>
+			</p>
+
+		</section>
 
 	</main>
 
@@ -685,7 +669,7 @@ inference_date
 	<footer>
 
 		<a href="../../index.html">
-			← Back to portfolio
+			← Назад к портфолио
 		</a>
 
 	</footer>
