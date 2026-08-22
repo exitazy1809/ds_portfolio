@@ -1,0 +1,10 @@
+pandas==1.2.4
+numpy==1.21.1
+matplotlib==3.3.4
+seaborn==0.11.1
+psycopg2-binary==2.9.2
+sqlalchemy==1.4.15
+catboost==1.0.3
+scikit-learn==0.24.1
+boto3==1.42.97
+python-dotenv==1.2.1
