@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Bookings — Data Science Case Study</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Hotel Bookings</h1>
+    <p>Прогнозирование отмен бронирований</p>
+    <p>CatBoost · XGBoost · LightGBM · NLP · SHAP · Optuna</p>
+</header>
+
+<main>
+
+<section>
+    <h2>О проекте</h2>
+
+    <p>
+        ML-модель для прогнозирования вероятности отмены бронирования
+        с использованием характеристик брони и текстовой информации
+        из отзывов клиентов.
+    </p>
+
+    <p>
+        Основная бизнес-цель — заранее выявлять рискованные бронирования
+        и оценивать потенциальный revenue uplift от целевых интервенций.
+    </p>
+</section>
+
+
+<section>
+    <h2>Данные</h2>
+
+    <div class="projects">
+
+        <article class="project-card">
+            <h3>30 733</h3>
+            <p>уникальных бронирования</p>
+        </article>
+
+        <article class="project-card">
+            <h3>526</h3>
+            <p>признаков после feature engineering</p>
+        </article>
+
+        <article class="project-card">
+            <h3>500</h3>
+            <p>TF-IDF признаков из отзывов</p>
+        </article>
+
+    </div>
+
+    <p>
+        Около 27% бронирований содержали доступный текстовый отзыв.
+        Текстовые данные были преобразованы в TF-IDF представление
+        с ограничением словаря до 500 признаков.
+    </p>
+</section>
+
+
+<section>
+    <h2>Feature Engineering</h2>
+
+    <p>Были созданы бизнес-интерпретируемые признаки:</p>
+
+    <ul>
+        <li><code>total_guests</code> — общее количество гостей;</li>
+        <li><code>stay_nights</code> — продолжительность проживания;</li>
+        <li><code>price_per_night</code> — стоимость одной ночи;</li>
+        <li><code>is_last_minute</code> — бронирование менее чем за 3 дня до заезда;</li>
+        <li><code>has_special_requests</code> — наличие специальных запросов.</li>
+    </ul>
+
+    <p>
+        Дополнительно из текстов отзывов были получены 500 TF-IDF признаков.
+        Это позволило учитывать не только числовые характеристики бронирования,
+        но и содержательную информацию из отзывов клиентов.
+    </p>
+</section>
+
+
+<section>
+    <h2>Моделирование</h2>
+
+    <p>
+        Были сравнены три алгоритма градиентного бустинга:
+    </p>
+
+    <ul>
+        <li>CatBoost</li>
+        <li>LightGBM</li>
+        <li>XGBoost</li>
+    </ul>
+
+    <p>
+        Гиперпараметры оптимизировались с использованием Optuna.
+        Для итоговой модели использовалась схема разделения данных
+        на train, calibration и test выборки.
+    </p>
+
+    <p>
+        Вероятности модели дополнительно калибровались,
+        после чего подбирался оптимальный порог классификации
+        непосредственно по бизнес-метрике Incremental Revenue.
+    </p>
+</section>
+
+
+<section>
+    <h2>Итоговая модель</h2>
+
+    <div class="projects">
+
+        <article class="project-card">
+            <h3>CatBoost</h3>
+            <p>Итоговая откалиброванная модель</p>
+        </article>
+
+        <article class="project-card">
+            <h3>480</h3>
+            <p>iterations</p>
+        </article>
+
+        <article class="project-card">
+            <h3>0.533</h3>
+            <p>оптимальный threshold</p>
+        </article>
+
+    </div>
+
+    <p>
+        Финальная модель:
+        <code>CatBoost + Isotonic Calibration</code>.
+    </p>
+
+    <ul>
+        <li>depth = 4</li>
+        <li>learning_rate ≈ 0.196</li>
+        <li>iterations = 480</li>
+        <li>l2_leaf_reg ≈ 7.25</li>
+        <li>оптимальный threshold = 0.533</li>
+    </ul>
+</section>
+
+
+<section>
+    <h2>Бизнес-результат</h2>
+
+    <div class="projects">
+
+        <article class="project-card">
+            <h3>215.4 млн ₽</h3>
+            <p>Incremental Revenue — calibration</p>
+        </article>
+
+        <article class="project-card">
+            <h3>214.5 млн ₽</h3>
+            <p>Incremental Revenue — test</p>
+        </article>
+
+    </div>
+
+    <p>
+        Значения IR на calibration и test выборках находятся на близком уровне,
+        что является хорошим признаком устойчивости выбранного решения.
+    </p>
+</section>
+
+
+<section>
+    <h2>Интерпретация модели</h2>
+
+    <p>
+        SHAP-анализ показал значительный вклад текстовых TF-IDF признаков
+        в прогнозирование отмен. Среди табличных признаков наиболее заметны
+        продолжительность проживания, количество гостей, стоимость проживания
+        и наличие специальных запросов.
+    </p>
+
+    <p>
+        Это показывает, что сочетание классических табличных признаков
+        и NLP позволяет учитывать как характеристики бронирования,
+        так и текстовую историю взаимодействия клиента.
+    </p>
+</section>
+
+
+<section>
+    <h2>Pipeline</h2>
+
+    <p>
+        <strong>Data → Feature Engineering → TF-IDF → Train →
+        Optuna → Calibration → Threshold Optimization → SHAP → Business Evaluation</strong>
+    </p>
+</section>
+
+
+<section>
+    <h2>Стек</h2>
+
+    <p>
+        Python · Pandas · NumPy · Scikit-learn · CatBoost ·
+        XGBoost · LightGBM · Optuna · SHAP · TF-IDF
+    </p>
+</section>
+
+
+<section>
+    <h2>Результат</h2>
+
+    <p>
+        В результате построен полный ML-пайплайн прогнозирования отмен:
+        от подготовки данных и генерации признаков до калибровки,
+        оптимизации порога и оценки бизнес-эффекта.
+    </p>
+</section>
+
+</main>
+
+
+<footer>
+    <p>
+        <a href="../../" >← Назад к портфолио</a>
+        &nbsp; · &nbsp;
+        <a href="https://github.com/exitazy1809/ds_portfolio"
+           target="_blank">
+            GitHub
+        </a>
+    </p>
+</footer>
+
+</body>
+</html>
