@@ -1,0 +1,7 @@
+.DS_Store
+models/
+*.pkl
+__pycache__/
+connect.env
+jupyter/catboost_info/
+jupyter/catboost_info/
